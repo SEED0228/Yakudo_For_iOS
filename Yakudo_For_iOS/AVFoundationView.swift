@@ -87,39 +87,6 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
             case .portrait:
                 self.previous_orientation = .portrait
                 self.previewLayer.connection?.videoOrientation = .portrait
-            case .portraitUpsideDown:
-                switch self.previous_orientation {
-                    case .portrait:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                    case .landscapeLeft:
-                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
-                    case .landscapeRight:
-                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
-                    default:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                }
-            case .faceUp:
-                switch self.previous_orientation {
-                    case .portrait:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                    case .landscapeLeft:
-                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
-                    case .landscapeRight:
-                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
-                    default:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                }
-            case .faceDown:
-                switch self.previous_orientation {
-                    case .portrait:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                    case .landscapeLeft:
-                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
-                    case .landscapeRight:
-                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
-                    default:
-                        self.previewLayer.connection?.videoOrientation = .portrait
-                }
             case .landscapeLeft:
                 self.previous_orientation = .landscapeLeft
                 self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
@@ -128,7 +95,16 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
                 self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
             
             default:
-                self.previewLayer.connection?.videoOrientation = .portrait           // unknown ....
+                switch self.previous_orientation {
+                    case .portrait:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                    case .landscapeLeft:
+                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
+                    case .landscapeRight:
+                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
+                    default:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                }
             }
             return
         }
