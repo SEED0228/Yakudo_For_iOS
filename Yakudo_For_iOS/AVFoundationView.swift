@@ -15,6 +15,8 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     @Published var image: UIImage?
     ///プレビュー用レイヤー
     var previewLayer:AVCaptureVideoPreviewLayer!
+    // 回転時に水平に置いた時用
+    var previous_orientation: UIDeviceOrientation = .portrait
 
     ///撮影開始フラグ
     private var _takePhoto:Bool = false
@@ -83,13 +85,48 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     func updatePreviewOrientation() {
             switch UIDevice.current.orientation {
             case .portrait:
+                self.previous_orientation = .portrait
                 self.previewLayer.connection?.videoOrientation = .portrait
             case .portraitUpsideDown:
-                self.previewLayer.connection?.videoOrientation = .portraitUpsideDown
+                switch self.previous_orientation {
+                    case .portrait:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                    case .landscapeLeft:
+                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
+                    case .landscapeRight:
+                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
+                    default:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                }
+            case .faceUp:
+                switch self.previous_orientation {
+                    case .portrait:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                    case .landscapeLeft:
+                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
+                    case .landscapeRight:
+                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
+                    default:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                }
+            case .faceDown:
+                switch self.previous_orientation {
+                    case .portrait:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                    case .landscapeLeft:
+                        self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
+                    case .landscapeRight:
+                        self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
+                    default:
+                        self.previewLayer.connection?.videoOrientation = .portrait
+                }
             case .landscapeLeft:
+                self.previous_orientation = .landscapeLeft
                 self.previewLayer.connection?.videoOrientation = .landscapeRight     // !!! left -> right !!!
             case .landscapeRight:
+                self.previous_orientation = .landscapeRight
                 self.previewLayer.connection?.videoOrientation = .landscapeLeft      // !!! right -> left !!!
+            
             default:
                 self.previewLayer.connection?.videoOrientation = .portrait           // unknown ....
             }
