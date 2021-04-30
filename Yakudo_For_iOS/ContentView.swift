@@ -40,7 +40,7 @@ struct ContentView: View {
 //            }
 //        }
         ZStack {
-            Color.gray
+            Color.black
                 .edgesIgnoringSafeArea(.all)
                 
             if avFoundationView.image == nil {
@@ -60,11 +60,11 @@ struct ContentView: View {
                                 self.avFoundationView.takePhoto()
                             }) {
                                 Image(systemName: "camera.circle.fill")
-                                    .renderingMode(.original)
+                                    .renderingMode(.template)
                                     .resizable()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .foregroundColor(.white)
-                                    .background(Color.gray)
+                                    .background(Color.gray.opacity(0))
                             }
                             
                         }
@@ -91,11 +91,11 @@ struct ContentView: View {
                                 self.avFoundationView.takePhoto()
                             }) {
                                 Image(systemName: "camera.circle.fill")
-                                    .renderingMode(.original)
+                                    .renderingMode(.template)
                                     .resizable()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .foregroundColor(.white)
-                                    .background(Color.gray)
+                                    .background(Color.gray.opacity(0))
                             }
                             
                         }
@@ -124,11 +124,11 @@ struct ContentView: View {
                                     self.avFoundationView.takePhoto()
                                 }) {
                                     Image(systemName: "camera.circle.fill")
-                                        .renderingMode(.original)
+                                        .renderingMode(.template)
                                         .resizable()
                                         .frame(width: 80, height: 80, alignment: .center)
                                         .foregroundColor(.white)
-                                        .background(Color.gray)
+                                        .background(Color.gray.opacity(0))
                                 }
                                 
                             }
@@ -152,11 +152,11 @@ struct ContentView: View {
                                     self.avFoundationView.takePhoto()
                                 }) {
                                     Image(systemName: "camera.circle.fill")
-                                        .renderingMode(.original)
+                                        .renderingMode(.template)
                                         .resizable()
                                         .frame(width: 80, height: 80, alignment: .center)
                                         .foregroundColor(.white)
-                                        .background(Color.gray)
+                                        .background(Color.gray.opacity(0))
                                 }
                                 
                             }
@@ -187,12 +187,12 @@ struct ContentView: View {
                             Button(action: {
                                 self.avFoundationView.image = nil
                             }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .renderingMode(.original)
+                                Image(systemName: "xmark.circle")
+                                    .renderingMode(.template)
                                     .resizable()
                                     .frame(width: 30, height: 30, alignment: .center)
                                     .foregroundColor(.white)
-                                    .background(Color.gray)
+                                    .background(Color.gray.opacity(0))
                             }
                                 .frame(width: 80, height: 80, alignment: .center)
                         }
@@ -203,11 +203,11 @@ struct ContentView: View {
                                 ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
                             }) {
                                 Image(systemName: "square.and.arrow.down")
-                                    .renderingMode(.original)
+                                    .renderingMode(.template)
                                     .resizable()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .foregroundColor(.white)
-                                    .background(Color.gray)
+                                    .background(Color.gray.opacity(0))
                                 }
                             .padding(.bottom, 50.0)
                             .alert(isPresented: $showAlert) {
@@ -238,12 +238,12 @@ struct ContentView: View {
                                 Button(action: {
                                     self.avFoundationView.image = nil
                                 }) {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .renderingMode(.original)
+                                    Image(systemName: "xmark.circle")
+                                        .renderingMode(.template)
                                         .resizable()
                                         .frame(width: 30, height: 30, alignment: .center)
                                         .foregroundColor(.white)
-                                        .background(Color.gray)
+                                        .background(Color.gray.opacity(0))
                                 }
                                     .frame(width: 50, height: 50, alignment: .center)
                             }
@@ -253,11 +253,11 @@ struct ContentView: View {
                                     ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
                                 }) {
                                     Image(systemName: "square.and.arrow.down")
-                                        .renderingMode(.original)
+                                        .renderingMode(.template)
                                         .resizable()
                                         .frame(width: 80, height: 80, alignment: .center)
                                         .foregroundColor(.white)
-                                        .background(Color.gray)
+                                        .background(Color.gray.opacity(0))
                                     }.alert(isPresented: $showAlert) {
                                         Alert(
                                             title: Text("画像を保存しました。"),
@@ -290,12 +290,12 @@ struct ContentView: View {
                                     Button(action: {
                                         self.avFoundationView.image = nil
                                     }) {
-                                        Image(systemName: "xmark.circle.fill")
-                                            .renderingMode(.original)
+                                        Image(systemName: "xmark.circle")
+                                            .renderingMode(.template)
                                             .resizable()
                                             .frame(width: 30, height: 30, alignment: .center)
                                             .foregroundColor(.white)
-                                            .background(Color.gray)
+                                            .background(Color.gray.opacity(0))
                                     }
                                         .frame(width: 80, height: 80, alignment: .center)
                                 }
@@ -306,11 +306,11 @@ struct ContentView: View {
                                         ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
                                     }) {
                                         Image(systemName: "square.and.arrow.down")
-                                            .renderingMode(.original)
+                                            .renderingMode(.template)
                                             .resizable()
                                             .frame(width: 80, height: 80, alignment: .center)
                                             .foregroundColor(.white)
-                                            .background(Color.gray)
+                                            .background(Color.gray.opacity(0))
                                         }
                                     .padding(.bottom, 50.0)
                                     .alert(isPresented: $showAlert) {
@@ -338,12 +338,12 @@ struct ContentView: View {
                                         Button(action: {
                                             self.avFoundationView.image = nil
                                         }) {
-                                            Image(systemName: "xmark.circle.fill")
-                                                .renderingMode(.original)
+                                            Image(systemName: "xmark.circle")
+                                                .renderingMode(.template)
                                                 .resizable()
                                                 .frame(width: 30, height: 30, alignment: .center)
                                                 .foregroundColor(.white)
-                                                .background(Color.gray)
+                                                .background(Color.gray.opacity(0))
                                         }
                                             .frame(width: 50, height: 50, alignment: .center)
                                     }
@@ -353,11 +353,11 @@ struct ContentView: View {
                                             ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
                                         }) {
                                             Image(systemName: "square.and.arrow.down")
-                                                .renderingMode(.original)
+                                                .renderingMode(.template)
                                                 .resizable()
                                                 .frame(width: 80, height: 80, alignment: .center)
                                                 .foregroundColor(.white)
-                                                .background(Color.gray)
+                                                .background(Color.gray.opacity(0))
                                             }.alert(isPresented: $showAlert) {
                                                 Alert(
                                                     title: Text("画像を保存しました。"),
