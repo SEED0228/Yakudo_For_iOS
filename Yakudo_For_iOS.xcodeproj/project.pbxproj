@@ -281,6 +281,8 @@
 				031C13282630486D007BF92B /* PBXTargetDependency */,
 			);
 			name = Yakudo_For_iOS;
+			packageProductDependencies = (
+			);
 			productName = Yakudo_For_iOS;
 			productReference = 03EC0DB5262F14A400CF944D /* Yakudo_For_iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +357,8 @@
 				Base,
 			);
 			mainGroup = 03EC0DAC262F14A400CF944D;
+			packageReferences = (
+			);
 			productRefGroup = 03EC0DB6262F14A400CF944D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
