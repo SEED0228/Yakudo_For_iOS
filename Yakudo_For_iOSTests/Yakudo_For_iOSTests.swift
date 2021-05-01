@@ -2,7 +2,7 @@
 //  Yakudo_For_iOSTests.swift
 //  Yakudo_For_iOSTests
 //
-//  Created by 多根直輝 on 2021/04/20.
+//  Created by SEED on 2021/04/20.
 //
 
 import XCTest

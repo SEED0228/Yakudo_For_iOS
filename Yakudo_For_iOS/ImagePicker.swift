@@ -2,7 +2,7 @@
 //  ImagePicker.swift
 //  receipt_manage (iOS)
 //
-//  Created by 多根直輝 on 2021/04/15.
+//  Created by SEED on 2021/04/15.
 //
 
 import UIKit

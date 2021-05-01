@@ -2,7 +2,7 @@
 //  Big_Yakudo.swift
 //  Big_Yakudo
 //
-//  Created by 多根直輝 on 2021/04/21.
+//  Created by SEED on 2021/04/21.
 //
 
 import WidgetKit
