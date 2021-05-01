@@ -175,7 +175,7 @@ struct ContentView: View {
 
             }
             else {
-                if current_orientation.isPortrait {
+                if current_orientation == .portrait {
                     VStack {
                         ZStack(alignment: .topLeading) {
                             VStack {
@@ -243,7 +243,7 @@ struct ContentView: View {
                             previous_orientation = current_orientation
                         }
                     }
-                    }
+                }
                     else if current_orientation.isLandscape {
                         HStack {
                             ZStack(alignment: .topLeading) {
@@ -310,7 +310,7 @@ struct ContentView: View {
                         
                     }
                     else {
-                        if previous_orientation.isPortrait {
+                        if previous_orientation == .portrait {
                             VStack {
                                 ZStack(alignment: .topLeading) {
                                     VStack {
