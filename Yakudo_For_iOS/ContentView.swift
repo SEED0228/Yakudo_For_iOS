@@ -46,17 +46,15 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
                 
             if avFoundationView.image == nil {
-                
-                if current_orientation.isLandscape  {
-                    HStack {
-                        LandscapeCALayerView(caLayer: avFoundationView.previewLayer)
+                if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
+                    ZStack {
+                        HStack {
+                            LandscapeRightCALayerView(caLayer: avFoundationView.previewLayer)
                             .onAppear {
-                                print("landscape")
-                                //self.orientation.addObserver()
-                            }.onDisappear {
-                                //self.orientation.removeObserver()
+                                print("landscape right")
                             }
-
+                            Spacer()
+                        }
                         HStack {
                             Button(action: {
                                 self.avFoundationView.takePhoto()
@@ -68,26 +66,53 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .background(Color.gray.opacity(0))
                             }
-                            
+                            .padding(.trailing, 50.0)
+                            Spacer()
                         }
-                        .padding(.leading, 50.0)
-                        Spacer()
                     }
                     .onAppear() {
-                        previous_orientation = current_orientation
+                        previous_orientation = .landscapeRight
+                    }
+                }
+                else if current_orientation == .landscapeLeft || (current_orientation.isFlat && previous_orientation == .landscapeLeft) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeLeft)  {
+                    ZStack {
+                        HStack {
+                            LandscapeLeftCALayerView(caLayer: avFoundationView.previewLayer)
+                            .onAppear {
+                                print("landscape left")
+                            }
+                            Spacer()
+                        }
+                        HStack {
+                            Spacer()
+                            HStack {
+                                Button(action: {
+                                    self.avFoundationView.takePhoto()
+                                }) {
+                                    Image(systemName: "camera.circle.fill")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .frame(width: 80, height: 80, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color.gray.opacity(0))
+                                }
+                                
+                            }
+                            .padding(.leading, 50.0)
+                            
+                        }
+                    }
+                    .onAppear() {
+                        previous_orientation = .landscapeLeft
                     }
                     
                 }
-                else if current_orientation == .portrait  {
+                else {
                     VStack {
                         PortraitCALayerView(caLayer: avFoundationView.previewLayer)
-                            .onAppear {
-                                print("portrait")
-                                //self.orientation.addObserver()
-                            }.onDisappear {
-                                //self.orientation.removeObserver()
-                            }
-
+                        .onAppear {
+                            print("portrait")
+                        }
                         HStack {
                             Button(action: {
                                 self.avFoundationView.takePhoto()
@@ -105,74 +130,10 @@ struct ContentView: View {
                         Spacer()
                     }
                     .onAppear() {
-                        previous_orientation = current_orientation
+                        previous_orientation = .portrait
                     }
                     
                 }
-                else {
-                    
-                    if previous_orientation.isPortrait  {
-                        VStack {
-                            PortraitCALayerView(caLayer: avFoundationView.previewLayer)
-                                .onAppear {
-                                    print("portrait")
-                                    //self.orientation.addObserver()
-                                }.onDisappear {
-                                    //self.orientation.removeObserver()
-                                }
-
-                            HStack {
-                                Button(action: {
-                                    self.avFoundationView.takePhoto()
-                                }) {
-                                    Image(systemName: "camera.circle.fill")
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .frame(width: 80, height: 80, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color.gray.opacity(0))
-                                }
-                                
-                            }
-                            .padding(.bottom, 50.0)
-                            Spacer()
-                        }
-                        
-                    }
-                    else  {
-                        HStack {
-                            LandscapeCALayerView(caLayer: avFoundationView.previewLayer)
-                                .onAppear {
-                                    print("landscape")
-                                    //self.orientation.addObserver()
-                                }.onDisappear {
-                                    //self.orientation.removeObserver()
-                                }
-
-                            HStack {
-                                Button(action: {
-                                    self.avFoundationView.takePhoto()
-                                }) {
-                                    Image(systemName: "camera.circle.fill")
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .frame(width: 80, height: 80, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color.gray.opacity(0))
-                                }
-                                
-                            }
-                            .padding(.leading, 50.0)
-                            Spacer()
-                        }
-                        
-                        
-                    }
-                }
-                
-                
-                
-
             }
             else {
                 if current_orientation == .portrait {
