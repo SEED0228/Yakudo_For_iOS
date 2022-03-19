@@ -117,20 +117,20 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
                 DispatchQueue.main.async {
                     switch UIDevice.current.orientation {
                     case .portrait:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
-                        print(1)
+                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 3)!)
+                        print("portrait")
                     case .portraitUpsideDown:
-                        //self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 3)!)
-                        print(12)
+                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 2)!)
+                        print("portraitUpsideDown")
                     case .landscapeLeft:
                         self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 0)!)
-                        print(3)
+                        print("landscapeLeft")
                     case .landscapeRight:
                         self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 1)!)
-                        print(4)
+                        print("landscapeRight")
                     default:
                         self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
-                        print(114)// unknown ....
+                        print("default")// unknown ....
                     }
                     //self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
                 }
