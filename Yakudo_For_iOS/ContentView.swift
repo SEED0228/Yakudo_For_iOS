@@ -18,7 +18,7 @@ struct ContentView: View {
     @State var current_orientation: UIDeviceOrientation = .portrait
     @State var previous_orientation: UIDeviceOrientation = .portrait
     @State var showAlert = false
-    @State private var inPhotoLibrary = false
+    @State private var isTweeting = false
     @State private var presentingSafariView = false
     @Environment(\.openURL) var openURL
 
@@ -252,275 +252,121 @@ struct ContentView: View {
                 }
             }
             else {
-                if current_orientation == .portrait {
-                    VStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack {
-                                Spacer()
-                                Image(uiImage: avFoundationView.image!)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .aspectRatio(contentMode: .fit)
-                                Spacer()
-                            }
-                            Button(action: {
-                                self.avFoundationView.image = nil
-                            }) {
-                                Image(systemName: "xmark.circle")
-                                    .renderingMode(.template)
-                                    .resizable()
-                                    .frame(width: 30, height: 30, alignment: .center)
-                                    .foregroundColor(.white)
-                                    .background(Color.gray.opacity(0))
-                            }
-                                .frame(width: 80, height: 80, alignment: .center)
+                Image(uiImage: avFoundationView.image!)
+                    .resizable()
+                    .scaledToFill()
+                    .aspectRatio(contentMode: .fit)
+                VStack {
+                    HStack {
+                        Button(action: {
+                            self.avFoundationView.image = nil
+                        }) {
+                            Image(systemName: "xmark.circle")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(Color.gray.opacity(0))
                         }
-                        ZStack {
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                }) {
-                                    Image(systemName: "square.and.arrow.down")
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .frame(width: 80, height: 80, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color.gray.opacity(0))
-                                    }
-                                .padding(.bottom, 50.0)
-                                .alert(isPresented: $showAlert) {
-                                        Alert(
-                                            title: Text("画像を保存しました。"),
-                                            message: Text(""),
-                                            dismissButton: .default(Text("OK"), action: {
-                                                showAlert = false
-                                            }))
-                                    }
-                                Spacer()
-                            }
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                    openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
-                                }) {
-                                    Image("twitter")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .frame(width: 50, height: 50, alignment: .center)
-                                        .background(Color.gray.opacity(0))
-                                }
-                                .padding(.bottom, 70.0)
-                                .padding(.trailing, 40.0)
-                            }
-                            
-                        }
-                        .onAppear() {
-                            previous_orientation = current_orientation
-                        }
+                        .padding(30.0)
+                        Spacer()
                     }
+                    Spacer()
                 }
-                    else if current_orientation.isLandscape {
-                        HStack {
-                            ZStack(alignment: .topLeading) {
-                                VStack {
-                                    Spacer()
-                                    Image(uiImage: avFoundationView.image!)
-                                    .resizable()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    Spacer()
-                                }
-                                Button(action: {
-                                    self.avFoundationView.image = nil
-                                }) {
-                                    Image(systemName: "xmark.circle")
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .frame(width: 30, height: 30, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color.gray.opacity(0))
-                                }
-                                    .frame(width: 50, height: 50, alignment: .center)
+                if current_orientation == .landscapeLeft || (current_orientation.isFlat && previous_orientation == .landscapeLeft) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeLeft) || current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
+                        }) {
+                            Image(systemName: "square.and.arrow.down")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(Color.gray.opacity(0))
+                                .padding(.trailing, 55.0)
+                            }.alert(isPresented: $showAlert) {
+                                Alert(
+                                    title: Text("画像を保存しました。"),
+                                    message: Text(""),
+                                    dismissButton: .default(Text("OK"), action: {
+                                        showAlert = false
+                                    }))
                             }
-                            ZStack {
-                                VStack {
-                                    Spacer()
-                                    Button(action: {
-                                        ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                    }) {
-                                        Image(systemName: "square.and.arrow.down")
-                                            .renderingMode(.template)
-                                            .resizable()
-                                            .frame(width: 80, height: 80, alignment: .center)
-                                            .foregroundColor(.white)
-                                            .background(Color.gray.opacity(0))
-                                        }.alert(isPresented: $showAlert) {
-                                            Alert(
-                                                title: Text("画像を保存しました。"),
-                                                message: Text(""),
-                                                dismissButton: .default(Text("OK"), action: {
-                                                    showAlert = false
-                                                }))
-                                        }
-                                    Spacer()
-                                }
-                                VStack {
-                                    Spacer()
-                                    Button(action: {
-                                        ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                        openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
-                                    }) {
-                                        Image("twitter")
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .frame(width: 50, height: 50, alignment: .center)
-                                            .background(Color.gray.opacity(0))
-                                    }
-                                    .padding(.bottom, 20.0)
-                                }
+                            .onAppear {
+                                print("landscape")
+                                previous_orientation = .landscapeLeft
                             }
-                        }
-                        .onAppear() {
-                            previous_orientation = current_orientation
-                        }
                         
                     }
-                    else {
-                        if previous_orientation == .portrait {
-                            VStack {
-                                ZStack(alignment: .topLeading) {
-                                    VStack {
-                                        Spacer()
-                                        Image(uiImage: avFoundationView.image!)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .aspectRatio(contentMode: .fit)
-                                        Spacer()
-                                    }
-                                    Button(action: {
-                                        self.avFoundationView.image = nil
-                                    }) {
-                                        Image(systemName: "xmark.circle")
-                                            .renderingMode(.template)
-                                            .resizable()
-                                            .frame(width: 30, height: 30, alignment: .center)
-                                            .foregroundColor(.white)
-                                            .background(Color.gray.opacity(0))
-                                    }
-                                        .frame(width: 80, height: 80, alignment: .center)
-                                }
-                                
-                                ZStack {
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                        }) {
-                                            Image(systemName: "square.and.arrow.down")
-                                                .renderingMode(.template)
-                                                .resizable()
-                                                .frame(width: 80, height: 80, alignment: .center)
-                                                .foregroundColor(.white)
-                                                .background(Color.gray.opacity(0))
-                                            }
-                                        .padding(.bottom, 50.0)
-                                        .alert(isPresented: $showAlert) {
-                                                Alert(
-                                                    title: Text("画像を保存しました。"),
-                                                    message: Text(""),
-                                                    dismissButton: .default(Text("OK"), action: {
-                                                        showAlert = false
-                                                    }))
-                                            }
-                                        Spacer()
-                                    }
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                            openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
-                                        }) {
-                                            Image("twitter")
-                                                .renderingMode(.original)
-                                                .resizable()
-                                                .frame(width: 50, height: 50, alignment: .center)
-                                                .background(Color.gray.opacity(0))
-                                        }
-                                        .padding(.bottom, 70.0)
-                                        .padding(.trailing, 40.0)
-                                    }
-                                }
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Button(action: {
+                                ImageSaver($isTweeting).writeToPhotoAlbum(image: avFoundationView.image!)
+                                openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
+                            }) {
+                                Image("twitter")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .background(Color.gray.opacity(0))
+                                    .padding(.trailing, 55.0)
+                                    .padding(.top, 55.0)
                             }
-                        }
-                        else  {
-                            HStack {
-                                ZStack(alignment: .topLeading) {
-                                    VStack {
-                                        Spacer()
-                                        Image(uiImage: avFoundationView.image!)
-                                        .resizable()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        Spacer()
-                                    }
-                                    Button(action: {
-                                        self.avFoundationView.image = nil
-                                    }) {
-                                        Image(systemName: "xmark.circle")
-                                            .renderingMode(.template)
-                                            .resizable()
-                                            .frame(width: 30, height: 30, alignment: .center)
-                                            .foregroundColor(.white)
-                                            .background(Color.gray.opacity(0))
-                                    }
-                                        .frame(width: 50, height: 50, alignment: .center)
-                                }
-                                
-                                ZStack {
-                                    VStack {
-                                        Spacer()
-                                        Button(action: {
-                                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                        }) {
-                                            Image(systemName: "square.and.arrow.down")
-                                                .renderingMode(.template)
-                                                .resizable()
-                                                .frame(width: 80, height: 80, alignment: .center)
-                                                .foregroundColor(.white)
-                                                .background(Color.gray.opacity(0))
-                                            }.alert(isPresented: $showAlert) {
-                                                Alert(
-                                                    title: Text("画像を保存しました。"),
-                                                    message: Text(""),
-                                                    dismissButton: .default(Text("OK"), action: {
-                                                        showAlert = false
-                                                    }))
-                                            }
-                                        Spacer()
-                                    }
-                                    VStack {
-                                        Spacer()
-                                        Button(action: {
-                                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
-                                            openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
-                                        }) {
-                                            Image("twitter")
-                                                .renderingMode(.original)
-                                                .resizable()
-                                                .frame(width: 50, height: 50, alignment: .center)
-                                                .background(Color.gray.opacity(0))
-                                        }
-                                        .padding(.bottom, 20.0)
-                                    }
-                                }
-                            }
+                            Spacer()
                         }
                     }
                 }
-            
-                
-            
-            
+                else {
+                    VStack {
+                        Spacer()
+                        Button(action: {
+                            ImageSaver($showAlert).writeToPhotoAlbum(image: avFoundationView.image!)
+                        })
+                        {
+                            Image(systemName: "square.and.arrow.down")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(Color.gray.opacity(0))
+                                .padding(.bottom, 55.0)
+                        }.alert(isPresented: $showAlert) {
+                            Alert(
+                                title: Text("画像を保存しました。"),
+                                message: Text(""),
+                                dismissButton: .default(Text("OK"), action: {
+                                    showAlert = false
+                                }))
+                        }
+                        .onAppear {
+                            print("landscape portrait")
+                            previous_orientation = .portrait
+                        }
+                    }
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                ImageSaver($isTweeting).writeToPhotoAlbum(image: avFoundationView.image!)
+                                openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
+                            }) {
+                                Image("twitter")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .background(Color.gray.opacity(0))
+                                    .padding(.bottom, 55.0)
+                                    .padding(.trailing, 55.0)
+                            }
+                        }
+                    }
+                    
+                }
+            }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name(UIDevice.orientationDidChangeNotification.rawValue)), perform: { _ in
                 avFoundationView.updatePreviewOrientation()
@@ -535,9 +381,6 @@ struct ContentView: View {
             }.onDisappear {
                 self.avFoundationView.endSession()
                 //self.orientation.removeObserver()
-            }
-            .sheet(isPresented: $inPhotoLibrary) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: $avFoundationView.image)
             }
         }
     
