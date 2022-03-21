@@ -20,6 +20,10 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
     ///撮影開始フラグ
     private var _takePhoto:Bool = false
+    
+    //撮影時の向き
+    private var _deviceOriantation:UIDeviceOrientation = .portrait
+    
     ///セッション
     private let captureSession = AVCaptureSession()
     ///撮影デバイス
@@ -32,7 +36,8 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         beginSession()
     }
 
-    func takePhoto() {
+    func takePhoto(previousOriantation: UIDeviceOrientation) {
+        _deviceOriantation = previousOriantation
         _takePhoto = true
     }
 
@@ -115,26 +120,27 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
             _takePhoto = false
             if let image = getImageFromSampleBuffer(buffer: sampleBuffer) {
                 DispatchQueue.main.async {
-                    switch UIDevice.current.orientation {
-                    case .portrait:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 3)!)
-                        print("portrait")
-                    case .portraitUpsideDown:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 2)!)
-                        print("portraitUpsideDown")
-                    case .landscapeLeft:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 0)!)
-                        print("landscapeLeft")
-                    case .landscapeRight:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 1)!)
-                        print("landscapeRight")
-                    default:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
-                        print("default")// unknown ....
-                    }
-                    //self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
+                    self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: self.getImageOriantation())
+                    print(image.imageOrientation.rawValue)
+                    print("finish photo")
+                    print(self.image!.imageOrientation.rawValue)
                 }
             }
+        }
+    }
+    
+    func getImageOriantation() -> UIImage.Orientation {
+        switch _deviceOriantation {
+        case .portrait:
+            return .right
+        case .portraitUpsideDown:
+            return .left
+        case .landscapeLeft:
+            return .up
+        case .landscapeRight:
+            return .down
+        default:
+            return .right
         }
     }
 
