@@ -66,7 +66,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .background(Color.gray.opacity(0))
                             }
-                            .padding(.trailing, 50.0)
+                            .padding(.leading, 40.0)
                             Spacer()
                         }
                     }
@@ -83,23 +83,21 @@ struct ContentView: View {
                             }
                             Spacer()
                         }
-                        HStack {
-                            Spacer()
+                        VStack {
                             HStack {
+                                Spacer()
                                 Button(action: {
                                     self.avFoundationView.takePhoto()
                                 }) {
                                     Image(systemName: "camera.circle.fill")
                                         .renderingMode(.template)
                                         .resizable()
-                                        .frame(width: 80, height: 80, alignment: .center)
+                                        .frame(width: 80, height: 80, alignment: .bottom)
                                         .foregroundColor(.white)
                                         .background(Color.gray.opacity(0))
                                 }
-                                
+                                .padding(.trailing, 40.0)
                             }
-                            .padding(.leading, 50.0)
-                            
                         }
                     }
                     .onAppear() {

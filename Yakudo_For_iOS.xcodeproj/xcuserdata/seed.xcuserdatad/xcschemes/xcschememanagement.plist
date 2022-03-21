@@ -7,12 +7,35 @@
 		<key>Big_YakudoExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>Yakudo_For_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>031C13182630486B007BF92B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03EC0DB4262F14A400CF944D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03EC0DC5262F14A500CF944D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03EC0DD0262F14A500CF944D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

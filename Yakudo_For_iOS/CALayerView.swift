@@ -46,7 +46,7 @@ struct LandscapeRightCALayerView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<LandscapeRightCALayerView>) -> UIViewController {
         let viewController = UIViewController()
-        viewController.view.frame = CGRect(x: viewController.view.frame.width*15/100, y: 0, width: viewController.view.frame.width*65/100, height: viewController.view.frame.height)
+        viewController.view.frame = CGRect(x: viewController.view.frame.width*17.5/100, y: 0, width: viewController.view.frame.width*65/100, height: viewController.view.frame.height)
         viewController.view.layer.addSublayer(caLayer)
         caLayer.frame = viewController.view.layer.frame
 
