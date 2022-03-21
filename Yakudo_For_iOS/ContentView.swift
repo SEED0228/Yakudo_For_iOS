@@ -20,19 +20,10 @@ struct ContentView: View {
     @State var showAlert = false
     @State private var isTweeting = false
     @State private var presentingSafariView = false
+    @State var expansionRate:CGFloat = 1.0
     @Environment(\.openURL) var openURL
 
     init() {
-        // test用
-//        image = UIImage.init(named: "カメラアイコン8.jpeg")
-////        filteredImage = {
-////                OpenCVTest.filteredImage(image)
-////            }()
-//        yakudoImage = {
-//            Yakudo.yakudo(image)
-//        }()
-//        avFoundationView.image = yakudoImage
-        
     }
     
     func takePhoto() {
@@ -50,15 +41,6 @@ struct ContentView: View {
     }
     
     var body: some View {
-//        ZStack {
-//            if self.filteredImage != nil {
-//                Image(uiImage: self.filteredImage!)
-//                    .resizable()
-//                    .aspectRatio(self.filteredImage!.size, contentMode: .fit)
-//            } else {
-//                Text("No Image")
-//            }
-//        }
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
@@ -73,7 +55,6 @@ struct ContentView: View {
                         self.image = nil
                     }
                 }
-                
             if avFoundationView.image == nil {
                 if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
                     if !processing {
@@ -83,6 +64,15 @@ struct ContentView: View {
                                 print("landscape right")
                                 previous_orientation = .landscapeRight
                             }
+                            .gesture(MagnificationGesture()
+                                .onChanged { value in
+                                    self.avFoundationView.zoomCamera(value: value)
+                                 }
+                                .onEnded { value in
+                                    self.avFoundationView.zoomEnded()
+                                    self.expansionRate = self.avFoundationView.expansionRate
+                                }
+                                     )
                             Spacer()
                         }
                     }
@@ -100,6 +90,9 @@ struct ContentView: View {
                         .padding(.leading, 40.0)
                         Spacer()
                         VStack {
+                            if expansionRate > 1.0 {
+                                Text(String(format: "x%.1f", self.expansionRate))
+                            }
                             Spacer()
                             Button(action: {
                                 self.reverseCamera()
@@ -141,6 +134,15 @@ struct ContentView: View {
                                 print("landscape left")
                                 previous_orientation = .landscapeLeft
                             }
+                            .gesture(MagnificationGesture()
+                                .onChanged { value in
+                                    self.avFoundationView.zoomCamera(value: value)
+                                 }
+                                .onEnded { value in
+                                    self.avFoundationView.zoomEnded()
+                                    self.expansionRate = self.avFoundationView.expansionRate
+                                }
+                                     )
                             Spacer()
                         }
                     }
@@ -158,6 +160,9 @@ struct ContentView: View {
                             }
                             .padding(.top, 30.0)
                             Spacer()
+                            if expansionRate > 1.0 {
+                                Text(String(format: "x%.1f", self.expansionRate))
+                            }
                         }
                         Spacer()
                         Button(action: {
@@ -198,9 +203,21 @@ struct ContentView: View {
                             print("portrait")
                             previous_orientation = .portrait
                         }
+                        .gesture(MagnificationGesture()
+                            .onChanged { value in
+                                self.avFoundationView.zoomCamera(value: value)
+                             }
+                            .onEnded { value in
+                                self.avFoundationView.zoomEnded()
+                                self.expansionRate = self.avFoundationView.expansionRate
+                            }
+                                 )
                     }
                     VStack {
                         HStack {
+                            if expansionRate > 1.0 {
+                                Text(String(format: "x%.1f", self.expansionRate))
+                            }
                             Spacer()
                             Button(action: {
                                 self.reverseCamera()
@@ -367,27 +384,21 @@ struct ContentView: View {
                     
                 }
             }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name(UIDevice.orientationDidChangeNotification.rawValue)), perform: { _ in
-                avFoundationView.updatePreviewOrientation()
-                current_orientation = UIDevice.current.orientation
-                //print(current_orientation.isLandscape)
-            })
-            .onAppear {
-               self.avFoundationView.startSession()
-                avFoundationView.updatePreviewOrientation()
-                current_orientation = UIDevice.current.orientation
-                //self.orientation.addObserver()
-            }.onDisappear {
-                self.avFoundationView.endSession()
-                //self.orientation.removeObserver()
-            }
         }
-    
-        func saveYakudo() {
-            
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name(UIDevice.orientationDidChangeNotification.rawValue)), perform: { _ in
+            avFoundationView.updatePreviewOrientation()
+            current_orientation = UIDevice.current.orientation
+        })
+        .onAppear {
+           self.avFoundationView.startSession()
+            avFoundationView.updatePreviewOrientation()
+            current_orientation = UIDevice.current.orientation
+            previous_orientation = UIDevice.current.orientation
+        }.onDisappear {
+            self.avFoundationView.endSession()
         }
     }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

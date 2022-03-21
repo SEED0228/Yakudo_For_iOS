@@ -26,9 +26,21 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     
     ///セッション
     private let captureSession = AVCaptureSession()
+    
     ///撮影デバイス
     private var capturepDevice:AVCaptureDevice!
-
+    
+    ///拡大率
+    var expansionRate:CGFloat = 1.0
+    
+    ///最大拡大率
+    private let maxExpansionRate:CGFloat = 5.0
+    
+    ///最小拡大率
+    private let minExpansionRate:CGFloat = 1.0
+    
+    private var lastValue: CGFloat = 1.0
+    
     override init() {
         super.init()
 
@@ -47,6 +59,31 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
             capturepDevice = availableDevice
         }
+    }
+    
+    func zoomCamera(value: CGFloat) {
+        let delta = value / lastValue
+        let newExpansionRate = expansionRate * delta
+        if newExpansionRate < minExpansionRate {
+            expansionRate = minExpansionRate
+        } else if maxExpansionRate < newExpansionRate {
+            expansionRate = maxExpansionRate
+        } else {
+            expansionRate = expansionRate * delta
+            lastValue = value
+        }
+        print("Ex: ", expansionRate)
+        do {
+            try capturepDevice?.lockForConfiguration()
+            capturepDevice?.ramp(toVideoZoomFactor: expansionRate, withRate: 32.0)
+            capturepDevice?.unlockForConfiguration()
+        } catch {
+            print("Failed to change zoom factor.")
+        }
+    }
+    
+    func zoomEnded() {
+        lastValue = 1.0
     }
 
     func beginSession(deviceOrientation: UIDeviceOrientation = .portrait) {
