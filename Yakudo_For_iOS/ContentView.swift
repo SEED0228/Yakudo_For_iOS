@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var image: UIImage?
     @State var processing = false
+    @State var isFrontCamera = false
     @State var yakudoImage: UIImage? = UIImage()
     @ObservedObject private var avFoundationView = AVFoundationView()
     @ObservedObject private var orientation:OrientationObserver = OrientationObserver()
@@ -37,6 +38,16 @@ struct ContentView: View {
         avFoundationView.takePhoto(previousOriantation: UIDevice.current.orientation == .portraitUpsideDown ? .portraitUpsideDown : previous_orientation)
     }
     
+    func reverseCamera() {
+        isFrontCamera.toggle()
+        processing = true
+        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back)
+        self.avFoundationView.beginSession(deviceOrientation: previous_orientation)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            processing = false
+        }
+    }
+    
     var body: some View {
 //        ZStack {
 //            if self.filteredImage != nil {
@@ -53,13 +64,15 @@ struct ContentView: View {
                 
             if avFoundationView.image == nil {
                 if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
-                    HStack {
-                        LandscapeRightCALayerView(caLayer: avFoundationView.previewLayer)
-                        .onAppear {
-                            print("landscape right")
-                            previous_orientation = .landscapeRight
+                    if !processing {
+                        HStack {
+                            LandscapeRightCALayerView(caLayer: avFoundationView.previewLayer)
+                            .onAppear {
+                                print("landscape right")
+                                previous_orientation = .landscapeRight
+                            }
+                            Spacer()
                         }
-                        Spacer()
                     }
                     HStack {
                         Button(action: {
@@ -74,18 +87,48 @@ struct ContentView: View {
                         }
                         .padding(.leading, 40.0)
                         Spacer()
+                        VStack {
+                            Spacer()
+                            Button(action: {
+                                self.reverseCamera()
+                            }) {
+                                Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 40, height: 30, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            .padding(.bottom, 30.0)
+                        }
                     }
                 }
                 else if current_orientation == .landscapeLeft || (current_orientation.isFlat && previous_orientation == .landscapeLeft) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeLeft)  {
-                    HStack {
-                        LandscapeLeftCALayerView(caLayer: avFoundationView.previewLayer)
-                        .onAppear {
-                            print("landscape left")
-                            previous_orientation = .landscapeLeft
+                    if !processing {
+                        HStack {
+                            LandscapeLeftCALayerView(caLayer: avFoundationView.previewLayer)
+                            .onAppear {
+                                print("landscape left")
+                                previous_orientation = .landscapeLeft
+                            }
+                            Spacer()
                         }
-                        Spacer()
                     }
                     HStack {
+                        VStack {
+                            Button(action: {
+                                self.reverseCamera()
+                            }) {
+                                Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 40, height: 30, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            .padding(.top, 30.0)
+                            Spacer()
+                        }
                         Spacer()
                         Button(action: {
                             self.takePhoto()
@@ -101,12 +144,28 @@ struct ContentView: View {
                     }
                 }
                 else {
-                    PortraitCALayerView(caLayer: avFoundationView.previewLayer)
-                    .onAppear {
-                        print("portrait")
-                        previous_orientation = .portrait
+                    if !processing {
+                        PortraitCALayerView(caLayer: avFoundationView.previewLayer)
+                        .onAppear {
+                            print("portrait")
+                            previous_orientation = .portrait
+                        }
                     }
                     VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.reverseCamera()
+                            }) {
+                                Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 40, height: 30, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            .padding(.trailing, 30.0)
+                        }
                         Spacer()
                         Button(action: {
                             self.takePhoto()

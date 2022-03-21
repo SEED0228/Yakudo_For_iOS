@@ -32,7 +32,7 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     override init() {
         super.init()
 
-        prepareCamera()
+        prepareCamera(withPosition: .back)
         beginSession()
     }
 
@@ -41,16 +41,25 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         _takePhoto = true
     }
 
-    private func prepareCamera() {
+    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position) {
         captureSession.sessionPreset = .photo
 
-        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first {
+        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
             capturepDevice = availableDevice
         }
     }
 
-    private func beginSession() {
+    func beginSession(deviceOrientation: UIDeviceOrientation = .portrait) {
         do {
+            if captureSession.isRunning {
+                captureSession.stopRunning()
+            }
+            captureSession.inputs.forEach { input in
+                captureSession.removeInput(input)
+            }
+            captureSession.outputs.forEach { output in
+                captureSession.removeOutput(output)
+            }
             let captureDeviceInput = try AVCaptureDeviceInput(device: capturepDevice)
 
             captureSession.addInput(captureDeviceInput)
@@ -60,7 +69,16 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        previewLayer.connection?.videoOrientation = .portrait
+        switch deviceOrientation {
+        case .portrait:
+            previewLayer.connection?.videoOrientation = .portrait
+        case .landscapeLeft:
+            previewLayer.connection?.videoOrientation = .landscapeRight
+        case .landscapeRight:
+            previewLayer.connection?.videoOrientation = .landscapeLeft
+        default:
+            previewLayer.connection?.videoOrientation = .portrait
+        }
         self.previewLayer = previewLayer
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA]
@@ -73,6 +91,7 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
         let queue = DispatchQueue(label: "FromF.github.com.AVFoundationSwiftUI.AVFoundation")
         dataOutput.setSampleBufferDelegate(self, queue: queue)
+        captureSession.startRunning()
     }
     
     func startSession() {
