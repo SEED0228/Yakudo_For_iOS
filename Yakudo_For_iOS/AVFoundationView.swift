@@ -20,32 +20,83 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
     ///撮影開始フラグ
     private var _takePhoto:Bool = false
+    
+    //撮影時の向き
+    private var _deviceOriantation:UIDeviceOrientation = .portrait
+    
     ///セッション
     private let captureSession = AVCaptureSession()
+    
     ///撮影デバイス
     private var capturepDevice:AVCaptureDevice!
-
+    
+    ///拡大率
+    var expansionRate:CGFloat = 1.0
+    
+    ///最大拡大率
+    private let maxExpansionRate:CGFloat = 5.0
+    
+    ///最小拡大率
+    private let minExpansionRate:CGFloat = 1.0
+    
+    private var lastValue: CGFloat = 1.0
+    
     override init() {
         super.init()
 
-        prepareCamera()
+        prepareCamera(withPosition: .back)
         beginSession()
     }
 
-    func takePhoto() {
+    func takePhoto(previousOriantation: UIDeviceOrientation) {
+        _deviceOriantation = previousOriantation
         _takePhoto = true
     }
 
-    private func prepareCamera() {
+    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position) {
         captureSession.sessionPreset = .photo
 
-        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first {
+        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
             capturepDevice = availableDevice
         }
     }
-
-    private func beginSession() {
+    
+    func zoomCamera(value: CGFloat) {
+        let delta = value / lastValue
+        let newExpansionRate = expansionRate * delta
+        if newExpansionRate < minExpansionRate {
+            expansionRate = minExpansionRate
+        } else if maxExpansionRate < newExpansionRate {
+            expansionRate = maxExpansionRate
+        } else {
+            expansionRate = expansionRate * delta
+            lastValue = value
+        }
+        print("Ex: ", expansionRate)
         do {
+            try capturepDevice?.lockForConfiguration()
+            capturepDevice?.ramp(toVideoZoomFactor: expansionRate, withRate: 32.0)
+            capturepDevice?.unlockForConfiguration()
+        } catch {
+            print("Failed to change zoom factor.")
+        }
+    }
+    
+    func zoomEnded() {
+        lastValue = 1.0
+    }
+
+    func beginSession(deviceOrientation: UIDeviceOrientation = .portrait) {
+        do {
+            if captureSession.isRunning {
+                captureSession.stopRunning()
+            }
+            captureSession.inputs.forEach { input in
+                captureSession.removeInput(input)
+            }
+            captureSession.outputs.forEach { output in
+                captureSession.removeOutput(output)
+            }
             let captureDeviceInput = try AVCaptureDeviceInput(device: capturepDevice)
 
             captureSession.addInput(captureDeviceInput)
@@ -55,7 +106,16 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        previewLayer.connection?.videoOrientation = .portrait
+        switch deviceOrientation {
+        case .portrait:
+            previewLayer.connection?.videoOrientation = .portrait
+        case .landscapeLeft:
+            previewLayer.connection?.videoOrientation = .landscapeRight
+        case .landscapeRight:
+            previewLayer.connection?.videoOrientation = .landscapeLeft
+        default:
+            previewLayer.connection?.videoOrientation = .portrait
+        }
         self.previewLayer = previewLayer
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA]
@@ -68,6 +128,7 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
 
         let queue = DispatchQueue(label: "FromF.github.com.AVFoundationSwiftUI.AVFoundation")
         dataOutput.setSampleBufferDelegate(self, queue: queue)
+        captureSession.startRunning()
     }
     
     func startSession() {
@@ -115,26 +176,27 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
             _takePhoto = false
             if let image = getImageFromSampleBuffer(buffer: sampleBuffer) {
                 DispatchQueue.main.async {
-                    switch UIDevice.current.orientation {
-                    case .portrait:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
-                        print(1)
-                    case .portraitUpsideDown:
-                        //self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 3)!)
-                        print(12)
-                    case .landscapeLeft:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 0)!)
-                        print(3)
-                    case .landscapeRight:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: UIImage.Orientation(rawValue: 1)!)
-                        print(4)
-                    default:
-                        self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
-                        print(114)// unknown ....
-                    }
-                    //self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: image.imageOrientation)
+                    self.image = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: self.getImageOriantation())
+                    print(image.imageOrientation.rawValue)
+                    print("finish photo")
+                    print(self.image!.imageOrientation.rawValue)
                 }
             }
+        }
+    }
+    
+    func getImageOriantation() -> UIImage.Orientation {
+        switch _deviceOriantation {
+        case .portrait:
+            return .right
+        case .portraitUpsideDown:
+            return .left
+        case .landscapeLeft:
+            return .up
+        case .landscapeRight:
+            return .down
+        default:
+            return .right
         }
     }
 
