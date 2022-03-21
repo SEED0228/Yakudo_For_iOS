@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var isTweeting = false
     @State private var presentingSafariView = false
     @State var expansionRate:CGFloat = 1.0
+    @State var insets = 0.0
     @Environment(\.openURL) var openURL
 
     init() {
@@ -87,11 +88,13 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .background(Color.gray.opacity(0))
                         }
-                        .padding(.leading, 40.0)
+                        .padding(.leading, 40.0  - self.insets * 1.5)
                         Spacer()
                         VStack {
                             if expansionRate > 1.0 {
                                 Text(String(format: "x%.1f", self.expansionRate))
+                                    .padding(.top, 30.0)
+                                    .padding(.trailing, 70.0 - self.insets * 3.5)
                             }
                             Spacer()
                             Button(action: {
@@ -105,6 +108,7 @@ struct ContentView: View {
                                     .background(Color.gray.opacity(0))
                             }
                             .padding(.bottom, 30.0)
+                            .padding(.trailing, 70.0 - self.insets * 3.5)
                         }
                     }
                     VStack {
@@ -120,7 +124,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .background(Color.gray.opacity(0))
                             }
-                            .padding(.leading, 55.0)
+                            .padding(.leading, 55.0 - self.insets * 1.5)
                             Spacer()
                         }
                         .padding(.bottom, 30.0)
@@ -159,9 +163,12 @@ struct ContentView: View {
                                     .background(Color.gray.opacity(0))
                             }
                             .padding(.top, 30.0)
+                            .padding(.leading, 70.0 - self.insets * 3.5)
                             Spacer()
                             if expansionRate > 1.0 {
                                 Text(String(format: "x%.1f", self.expansionRate))
+                                    .padding(.bottom, 30.0)
+                                    .padding(.leading, 70.0 - self.insets * 3.5)
                             }
                         }
                         Spacer()
@@ -175,7 +182,7 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .background(Color.gray.opacity(0))
                         }
-                        .padding(.trailing, 40.0)
+                        .padding(.trailing, 40.0 - self.insets * 1.5)
                     }
                     VStack {
                         HStack {
@@ -190,7 +197,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .background(Color.gray.opacity(0))
                             }
-                            .padding(.trailing, 55.0)
+                            .padding(.trailing, 55.0  - self.insets * 1.5)
                         }
                         .padding(.top, 30.0)
                         Spacer()
@@ -217,6 +224,8 @@ struct ContentView: View {
                         HStack {
                             if expansionRate > 1.0 {
                                 Text(String(format: "x%.1f", self.expansionRate))
+                                    .padding(.top, 70.0 - self.insets * 3.5)
+                                    .padding(.leading, 30.0)
                             }
                             Spacer()
                             Button(action: {
@@ -230,6 +239,7 @@ struct ContentView: View {
                                     .background(Color.gray.opacity(0))
                             }
                             .padding(.trailing, 30.0)
+                            .padding(.top, 70.0 - self.insets * 3.5)
                         }
                         Spacer()
                         ZStack {
@@ -243,6 +253,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                                     .background(Color.gray.opacity(0))
                             }
+                            
                             HStack {
                                 Spacer()
                                 Button(action: {
@@ -258,7 +269,7 @@ struct ContentView: View {
                                 .padding(.trailing, 30.0)
                             }
                         }
-                        .padding(.bottom, 50.0)
+                        .padding(.bottom, 50.0 - self.insets * 1.5)
                     }
                     
                 }
@@ -285,7 +296,7 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .background(Color.gray.opacity(0))
                         }
-                        .padding(30.0)
+                        .padding(40.0 - self.insets * 1.0)
                         Spacer()
                     }
                     Spacer()
@@ -302,7 +313,7 @@ struct ContentView: View {
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(.white)
                                 .background(Color.gray.opacity(0))
-                                .padding(.trailing, 55.0)
+                                .padding(.trailing, 75.0 - self.insets * 2.0)
                             }.alert(isPresented: $showAlert) {
                                 Alert(
                                     title: Text("画像を保存しました。"),
@@ -329,7 +340,7 @@ struct ContentView: View {
                                     .resizable()
                                     .frame(width: 50, height: 50, alignment: .center)
                                     .background(Color.gray.opacity(0))
-                                    .padding(.trailing, 55.0)
+                                    .padding(.trailing, 75.0  - self.insets * 2.0)
                                     .padding(.top, 55.0)
                             }
                             Spacer()
@@ -349,7 +360,7 @@ struct ContentView: View {
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(.white)
                                 .background(Color.gray.opacity(0))
-                                .padding(.bottom, 55.0)
+                                .padding(.bottom, 75.0  - self.insets * 2.0)
                         }.alert(isPresented: $showAlert) {
                             Alert(
                                 title: Text("画像を保存しました。"),
@@ -376,7 +387,7 @@ struct ContentView: View {
                                     .resizable()
                                     .frame(width: 50, height: 50, alignment: .center)
                                     .background(Color.gray.opacity(0))
-                                    .padding(.bottom, 55.0)
+                                    .padding(.bottom, 75.0  - self.insets * 2.0)
                                     .padding(.trailing, 55.0)
                             }
                         }
@@ -394,9 +405,17 @@ struct ContentView: View {
             avFoundationView.updatePreviewOrientation()
             current_orientation = UIDevice.current.orientation
             previous_orientation = UIDevice.current.orientation
-        }.onDisappear {
+            var safeAreaInsets = max(UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0.0, UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0)
+            safeAreaInsets = max(safeAreaInsets, UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0.0, UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0.0)
+             // ノッチがない場合の処理
+             if(safeAreaInsets < 44.0){
+                 self.insets = 10.0
+             }
+        }
+        .onDisappear {
             self.avFoundationView.endSession()
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
