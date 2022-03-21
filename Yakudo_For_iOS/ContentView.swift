@@ -11,6 +11,7 @@ struct ContentView: View {
     @State var image: UIImage?
     @State var processing = false
     @State var isFrontCamera = false
+    @State var isSelecting = false
     @State var yakudoImage: UIImage? = UIImage()
     @ObservedObject private var avFoundationView = AVFoundationView()
     @ObservedObject private var orientation:OrientationObserver = OrientationObserver()
@@ -61,6 +62,17 @@ struct ContentView: View {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
+                .sheet(isPresented: $isSelecting) {
+                    ImagePicker(selectedImage: $image)
+                }
+                .onChange(of: self.image) { image in
+                    if image != nil {
+                        let orientation = image!.imageOrientation
+                        let yakudoImage = UIImage(cgImage: (Yakudo.yakudo(image)!).cgImage!, scale: 0, orientation: orientation)
+                        self.avFoundationView.image = yakudoImage
+                        self.image = nil
+                    }
+                }
                 
             if avFoundationView.image == nil {
                 if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
@@ -102,6 +114,24 @@ struct ContentView: View {
                             .padding(.bottom, 30.0)
                         }
                     }
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Button(action: {
+                                self.isSelecting = true
+                            }) {
+                                Image(systemName: "photo")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            .padding(.leading, 55.0)
+                            Spacer()
+                        }
+                        .padding(.bottom, 30.0)
+                    }
                 }
                 else if current_orientation == .landscapeLeft || (current_orientation.isFlat && previous_orientation == .landscapeLeft) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeLeft)  {
                     if !processing {
@@ -142,6 +172,24 @@ struct ContentView: View {
                         }
                         .padding(.trailing, 40.0)
                     }
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.isSelecting = true
+                            }) {
+                                Image(systemName: "photo")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            .padding(.trailing, 55.0)
+                        }
+                        .padding(.top, 30.0)
+                        Spacer()
+                    }
                 }
                 else {
                     if !processing {
@@ -167,15 +215,31 @@ struct ContentView: View {
                             .padding(.trailing, 30.0)
                         }
                         Spacer()
-                        Button(action: {
-                            self.takePhoto()
-                        }) {
-                            Image(systemName: "camera.circle.fill")
-                                .renderingMode(.template)
-                                .resizable()
-                                .frame(width: 80, height: 80, alignment: .center)
-                                .foregroundColor(.white)
-                                .background(Color.gray.opacity(0))
+                        ZStack {
+                            Button(action: {
+                                self.takePhoto()
+                            }) {
+                                Image(systemName: "camera.circle.fill")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 80, height: 80, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray.opacity(0))
+                            }
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    self.isSelecting = true
+                                }) {
+                                    Image(systemName: "photo")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color.gray.opacity(0))
+                                }
+                                .padding(.trailing, 30.0)
+                            }
                         }
                         .padding(.bottom, 50.0)
                     }
