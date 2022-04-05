@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>カメラの使用を許可しますか？</string>
+	<string>撮影してただいた写真をもとに躍動感のある写真を作成するためにあなたのカメラを使用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>フォトライブラリの使用を許可しますか？</string>
+	<string>許可をいただくとアルバムの写真を加工することができます</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

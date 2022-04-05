@@ -6,12 +6,24 @@
       "scale" : "1x"
     },
     {
+      "filename" : "ramen-3.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "ramen-4.jpg",
       "idiom" : "universal",
       "scale" : "3x"
+    },
+    {
+      "filename" : "ramen-1.jpg",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "ramen-2.jpg",
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {

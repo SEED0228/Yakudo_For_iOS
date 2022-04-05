@@ -41,6 +41,9 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     
     private var lastValue: CGFloat = 1.0
     
+    let music_data = NSDataAsset(name: "camera")!.data
+    var music_player:AVAudioPlayer!
+    
     override init() {
         super.init()
 
@@ -48,15 +51,24 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         beginSession()
     }
 
-    func takePhoto(previousOriantation: UIDeviceOrientation) {
+    func takePhoto(previousOriantation: UIDeviceOrientation, isFrontCamera: Bool) {
         _deviceOriantation = previousOriantation
+        if(isFrontCamera && previousOriantation.isLandscape) {
+            _deviceOriantation = previousOriantation == .landscapeRight ? .landscapeLeft : .landscapeRight
+        }
+        do{
+            music_player = try AVAudioPlayer(data:music_data)
+            music_player.play()
+        }catch{
+            print("error")
+        }
         _takePhoto = true
     }
 
     func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position) {
         captureSession.sessionPreset = .photo
 
-        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
+        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.last {
             capturepDevice = availableDevice
         }
     }

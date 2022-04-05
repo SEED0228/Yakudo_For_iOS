@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @State var image: UIImage?
+    @State var flashing = false
     @State var processing = false
     @State var isFrontCamera = false
     @State var isSelecting = false
@@ -28,7 +30,11 @@ struct ContentView: View {
     }
     
     func takePhoto() {
-        avFoundationView.takePhoto(previousOriantation: UIDevice.current.orientation == .portraitUpsideDown ? .portraitUpsideDown : previous_orientation)
+        flashing = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            flashing = false
+        }
+        avFoundationView.takePhoto(previousOriantation: UIDevice.current.orientation == .portraitUpsideDown ? .portraitUpsideDown : previous_orientation, isFrontCamera: isFrontCamera)
     }
     
     func reverseCamera() {
@@ -394,6 +400,10 @@ struct ContentView: View {
                     }
                     
                 }
+            }
+            if flashing {
+                Color.white
+                    .edgesIgnoringSafeArea(.all)
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name(UIDevice.orientationDidChangeNotification.rawValue)), perform: { _ in
