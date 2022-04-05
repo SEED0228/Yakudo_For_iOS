@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 
 struct ContentView: View {
@@ -14,6 +15,10 @@ struct ContentView: View {
     @State var processing = false
     @State var isFrontCamera = false
     @State var isSelecting = false
+    @State var isSelectingSessionPreset = false
+    @State var sessionPresets: [Int] = []
+    @State var sessionPreset: Int = 3
+    @State var captureSession: AVCaptureSession?
     @State var yakudoImage: UIImage? = UIImage()
     @ObservedObject private var avFoundationView = AVFoundationView()
     @ObservedObject private var orientation:OrientationObserver = OrientationObserver()
@@ -25,9 +30,6 @@ struct ContentView: View {
     @State var expansionRate:CGFloat = 1.0
     @State var insets = 0.0
     @Environment(\.openURL) var openURL
-
-    init() {
-    }
     
     func takePhoto() {
         flashing = true
@@ -39,9 +41,34 @@ struct ContentView: View {
     
     func reverseCamera() {
         isFrontCamera.toggle()
+        sessionPreset = 3
         processing = true
-        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back)
+        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back, sessionPreset: .photo)
         self.avFoundationView.beginSession(deviceOrientation: previous_orientation)
+        captureSession = avFoundationView.getCaptureSession()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            processing = false
+        }
+    }
+    
+    func changeSessionPreset() {
+        processing = true
+        let preset: AVCaptureSession.Preset
+        switch(sessionPreset) {
+        case 0:
+            preset = .hd4K3840x2160
+        case 1:
+            preset = .hd1920x1080
+        case 2:
+            preset = .hd1280x720
+        case 3:
+            preset = .photo
+        default:
+            preset = .photo
+        }
+        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back, sessionPreset: preset)
+        self.avFoundationView.beginSession(deviceOrientation: previous_orientation)
+        captureSession = avFoundationView.getCaptureSession()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             processing = false
         }
@@ -62,6 +89,9 @@ struct ContentView: View {
                         self.image = nil
                     }
                 }
+                .onChange(of: self.sessionPreset) { preset in
+                    changeSessionPreset()
+                }
             if avFoundationView.image == nil {
                 if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
                     if !processing {
@@ -69,6 +99,7 @@ struct ContentView: View {
                             LandscapeRightCALayerView(caLayer: avFoundationView.previewLayer)
                             .onAppear {
                                 print("landscape right")
+                                captureSession = avFoundationView.getCaptureSession()
                                 previous_orientation = .landscapeRight
                             }
                             .gesture(MagnificationGesture()
@@ -103,6 +134,24 @@ struct ContentView: View {
                                     .padding(.trailing, 70.0 - self.insets * 3.5)
                             }
                             Spacer()
+                            if(!processing && captureSession != nil) {
+                                Picker("Auto", selection: $sessionPreset) {
+                                    if(captureSession!.canSetSessionPreset(.hd4K3840x2160)) {
+                                        Text("4K").tag(0)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1920x1080)) {
+                                        Text("1080p").tag(1)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1280x720)) {
+                                        Text("720p").tag(2)
+                                    }
+                                    Text("Auto").tag(3)
+                                }
+                                    .pickerStyle(.menu)
+                                    .colorInvert()
+                                    .padding(.bottom, 30.0)
+                                    .padding(.trailing, 70.0 - self.insets * 3.5)
+                            }
                             Button(action: {
                                 self.reverseCamera()
                             }) {
@@ -142,6 +191,7 @@ struct ContentView: View {
                             LandscapeLeftCALayerView(caLayer: avFoundationView.previewLayer)
                             .onAppear {
                                 print("landscape left")
+                                captureSession = avFoundationView.getCaptureSession()
                                 previous_orientation = .landscapeLeft
                             }
                             .gesture(MagnificationGesture()
@@ -170,6 +220,24 @@ struct ContentView: View {
                             }
                             .padding(.top, 30.0)
                             .padding(.leading, 70.0 - self.insets * 3.5)
+                            if(!processing && captureSession != nil) {
+                                Picker("Auto", selection: $sessionPreset) {
+                                    if(captureSession!.canSetSessionPreset(.hd4K3840x2160)) {
+                                        Text("4K").tag(0)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1920x1080)) {
+                                        Text("1080p").tag(1)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1280x720)) {
+                                        Text("720p").tag(2)
+                                    }
+                                    Text("Auto").tag(3)
+                                }
+                                    .pickerStyle(.menu)
+                                    .colorInvert()
+                                    .padding(.top, 30.0)
+                                    .padding(.leading, 70.0 - self.insets * 3.5)
+                            }
                             Spacer()
                             if expansionRate > 1.0 {
                                 Text(String(format: "x%.1f", self.expansionRate))
@@ -214,6 +282,7 @@ struct ContentView: View {
                         PortraitCALayerView(caLayer: avFoundationView.previewLayer)
                         .onAppear {
                             print("portrait")
+                            captureSession = avFoundationView.getCaptureSession()
                             previous_orientation = .portrait
                         }
                         .gesture(MagnificationGesture()
@@ -234,6 +303,24 @@ struct ContentView: View {
                                     .padding(.leading, 30.0)
                             }
                             Spacer()
+                            if(!processing && captureSession != nil) {
+                                Picker("Auto", selection: $sessionPreset) {
+                                    if(captureSession!.canSetSessionPreset(.hd4K3840x2160)) {
+                                        Text("4K").tag(0)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1920x1080)) {
+                                        Text("1080p").tag(1)
+                                    }
+                                    if(captureSession!.canSetSessionPreset(.hd1280x720)) {
+                                        Text("720p").tag(2)
+                                    }
+                                    Text("Auto").tag(3)
+                                }
+                                    .pickerStyle(.menu)
+                                    .colorInvert()
+                                    .padding(.trailing, 30.0)
+                                    .padding(.top, 70.0 - self.insets * 3.5)
+                            }
                             Button(action: {
                                 self.reverseCamera()
                             }) {

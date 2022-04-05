@@ -47,8 +47,11 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
     override init() {
         super.init()
 
-        prepareCamera(withPosition: .back)
+        prepareCamera(withPosition: .back, sessionPreset: .photo)
         beginSession()
+    }
+    func getCaptureSession() -> AVCaptureSession {
+        return captureSession
     }
 
     func takePhoto(previousOriantation: UIDeviceOrientation, isFrontCamera: Bool) {
@@ -65,10 +68,10 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         _takePhoto = true
     }
 
-    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position) {
-        captureSession.sessionPreset = .photo
+    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position, sessionPreset: AVCaptureSession.Preset) {
+        captureSession.sessionPreset = sessionPreset
 
-        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.last {
+        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
             capturepDevice = availableDevice
         }
     }
