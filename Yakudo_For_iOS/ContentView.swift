@@ -29,6 +29,8 @@ struct ContentView: View {
     @State private var presentingSafariView = false
     @State var expansionRate:CGFloat = 1.0
     @State var insets = 0.0
+    @State var isEquippedWithUltraWideCamera = false
+    @State var isUltraWideCamera = false
     @Environment(\.openURL) var openURL
     
     func takePhoto() {
@@ -39,13 +41,33 @@ struct ContentView: View {
         avFoundationView.takePhoto(previousOriantation: UIDevice.current.orientation == .portraitUpsideDown ? .portraitUpsideDown : previous_orientation, isFrontCamera: isFrontCamera)
     }
     
+    func checkDevice() {
+        captureSession = avFoundationView.getCaptureSession()
+        let pos: AVCaptureDevice.Position = isFrontCamera ? .front : .back
+        if AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: pos) != nil {
+            isEquippedWithUltraWideCamera = true
+        }
+        else if AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: pos) != nil {
+            isEquippedWithUltraWideCamera = true
+        }
+        else {
+            isEquippedWithUltraWideCamera = false
+            isUltraWideCamera = false
+        }
+    }
+    
+    func reverceUltraWideCamera() {
+        isUltraWideCamera.toggle()
+        changeSessionPreset()
+    }
+    
     func reverseCamera() {
         isFrontCamera.toggle()
         sessionPreset = 3
         processing = true
         self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back, sessionPreset: .photo)
         self.avFoundationView.beginSession(deviceOrientation: previous_orientation)
-        captureSession = avFoundationView.getCaptureSession()
+        checkDevice()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             processing = false
         }
@@ -66,9 +88,9 @@ struct ContentView: View {
         default:
             preset = .photo
         }
-        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back, sessionPreset: preset)
+        self.avFoundationView.prepareCamera(withPosition: isFrontCamera ? .front : .back, sessionPreset: preset, deviceType: isUltraWideCamera ? .builtInUltraWideCamera : .builtInWideAngleCamera)
         self.avFoundationView.beginSession(deviceOrientation: previous_orientation)
-        captureSession = avFoundationView.getCaptureSession()
+        checkDevice()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             processing = false
         }
@@ -99,7 +121,7 @@ struct ContentView: View {
                             LandscapeRightCALayerView(caLayer: avFoundationView.previewLayer)
                             .onAppear {
                                 print("landscape right")
-                                captureSession = avFoundationView.getCaptureSession()
+                                checkDevice()
                                 previous_orientation = .landscapeRight
                             }
                             .gesture(MagnificationGesture()
@@ -134,6 +156,22 @@ struct ContentView: View {
                                     .padding(.trailing, 70.0 - self.insets * 3.5)
                             }
                             Spacer()
+                            if(!processing && isEquippedWithUltraWideCamera && !isFrontCamera) {
+                                Button(action: {
+                                    self.reverceUltraWideCamera()
+                                }) {
+                                    if(isUltraWideCamera) {
+                                        Text("0.5x")
+                                            .foregroundColor(.white)
+                                    }
+                                    else {
+                                        Text("1.0x")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding(.bottom, 30.0)
+                                .padding(.trailing, 70.0 - self.insets * 3.5)
+                            }
                             if(!processing && captureSession != nil) {
                                 Picker("Auto", selection: $sessionPreset) {
                                     if(captureSession!.canSetSessionPreset(.hd4K3840x2160)) {
@@ -191,7 +229,7 @@ struct ContentView: View {
                             LandscapeLeftCALayerView(caLayer: avFoundationView.previewLayer)
                             .onAppear {
                                 print("landscape left")
-                                captureSession = avFoundationView.getCaptureSession()
+                                checkDevice()
                                 previous_orientation = .landscapeLeft
                             }
                             .gesture(MagnificationGesture()
@@ -238,6 +276,22 @@ struct ContentView: View {
                                     .padding(.top, 30.0)
                                     .padding(.leading, 70.0 - self.insets * 3.5)
                             }
+                            if(!processing && isEquippedWithUltraWideCamera && !isFrontCamera) {
+                                Button(action: {
+                                    self.reverceUltraWideCamera()
+                                }) {
+                                    if(isUltraWideCamera) {
+                                        Text("0.5x")
+                                            .foregroundColor(.white)
+                                    }
+                                    else {
+                                        Text("1.0x")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding(.top, 30.0)
+                                .padding(.leading, 70.0 - self.insets * 3.5)
+                            }
                             Spacer()
                             if expansionRate > 1.0 {
                                 Text(String(format: "x%.1f", self.expansionRate))
@@ -282,7 +336,7 @@ struct ContentView: View {
                         PortraitCALayerView(caLayer: avFoundationView.previewLayer)
                         .onAppear {
                             print("portrait")
-                            captureSession = avFoundationView.getCaptureSession()
+                            checkDevice()
                             previous_orientation = .portrait
                         }
                         .gesture(MagnificationGesture()
@@ -303,6 +357,22 @@ struct ContentView: View {
                                     .padding(.leading, 30.0)
                             }
                             Spacer()
+                            if(!processing && isEquippedWithUltraWideCamera && !isFrontCamera) {
+                                Button(action: {
+                                    self.reverceUltraWideCamera()
+                                }) {
+                                    if(isUltraWideCamera) {
+                                        Text("0.5x")
+                                            .foregroundColor(.white)
+                                    }
+                                    else {
+                                        Text("1.0x")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding(.trailing, 30.0)
+                                .padding(.top, 70.0 - self.insets * 3.5)
+                            }
                             if(!processing && captureSession != nil) {
                                 Picker("Auto", selection: $sessionPreset) {
                                     if(captureSession!.canSetSessionPreset(.hd4K3840x2160)) {

@@ -68,10 +68,10 @@ class AVFoundationView: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, 
         _takePhoto = true
     }
 
-    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position, sessionPreset: AVCaptureSession.Preset) {
+    func prepareCamera(withPosition cameraPosition: AVCaptureDevice.Position, sessionPreset: AVCaptureSession.Preset, deviceType: AVCaptureDevice.DeviceType = .builtInWideAngleCamera) {
         captureSession.sessionPreset = sessionPreset
 
-        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
+        if let availableDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [deviceType], mediaType: AVMediaType.video, position: cameraPosition).devices.first {
             capturepDevice = availableDevice
         }
     }
