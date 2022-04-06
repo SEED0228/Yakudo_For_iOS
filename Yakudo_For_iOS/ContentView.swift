@@ -26,6 +26,7 @@ struct ContentView: View {
     @State var previous_orientation: UIDeviceOrientation = .portrait
     @State var showAlert = false
     @State private var isTweeting = false
+    @State private var showTweetingAlert = false
     @State private var presentingSafariView = false
     @State var expansionRate:CGFloat = 1.0
     @State var insets = 0.0
@@ -113,6 +114,15 @@ struct ContentView: View {
                 }
                 .onChange(of: self.sessionPreset) { preset in
                     changeSessionPreset()
+                }
+                .alert(isPresented: $showTweetingAlert) {
+                    Alert(title: Text("ツイートする"),
+                        message: Text("この画像を保存し、Twitterに移行しますか？"),
+                        primaryButton: .cancel(Text("キャンセル")),
+                          secondaryButton: .default(Text("移行する"), action: {
+                        ImageSaver($isTweeting).writeToPhotoAlbum(image: avFoundationView.image!)
+                        openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
+                    }))
                 }
             if avFoundationView.image == nil {
                 if current_orientation == .landscapeRight || (current_orientation.isFlat && previous_orientation == .landscapeRight) || (current_orientation == .portraitUpsideDown && previous_orientation == .landscapeRight) {
@@ -495,8 +505,7 @@ struct ContentView: View {
                         Spacer()
                         VStack {
                             Button(action: {
-                                ImageSaver($isTweeting).writeToPhotoAlbum(image: avFoundationView.image!)
-                                openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
+                                showTweetingAlert = true
                             }) {
                                 Image("twitter")
                                     .renderingMode(.original)
@@ -542,8 +551,7 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                ImageSaver($isTweeting).writeToPhotoAlbum(image: avFoundationView.image!)
-                                openURL(URL(string: "https://twitter.com/intent/tweet?text=%23mis1yakudo")!)
+                                showTweetingAlert = true
                             }) {
                                 Image("twitter")
                                     .renderingMode(.original)
