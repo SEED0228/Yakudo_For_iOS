@@ -7,6 +7,9 @@
 iphone11〜13シリーズの超広角カメラや4k撮影、マナー撮影に対応しており、公共の場などのさまざまな場面で高画質で躍動感のある写真を取ることができます。
 マナー撮影をするときは、iphoneをマナーモードにしてください。
 
+## ダウンロード
+<a href="https://apps.apple.com/jp/app/yakudo-camera/id1615899598?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1649462400&h=7bfb51012737f033cc0282ac00a71ebe" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
+
 ## 機能一覧
 
 - ズーム機能
