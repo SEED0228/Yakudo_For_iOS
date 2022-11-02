@@ -63,8 +63,8 @@ struct BigYakudo: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             BigYakudoEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Yakudo ショートカット")
+        .description("Yakudoを起動することができます")
     }
 }
 
