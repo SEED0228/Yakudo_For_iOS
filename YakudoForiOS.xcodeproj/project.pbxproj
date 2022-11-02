@@ -13,11 +13,11 @@
 		031C131126304175007BF92B /* カメラアイコン8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 031C131026304175007BF92B /* カメラアイコン8.jpeg */; };
 		031C131B2630486B007BF92B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031C131A2630486B007BF92B /* WidgetKit.framework */; };
 		031C131D2630486B007BF92B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031C131C2630486B007BF92B /* SwiftUI.framework */; };
-		031C13202630486C007BF92B /* Big_Yakudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031C131F2630486C007BF92B /* Big_Yakudo.swift */; };
+		031C13202630486C007BF92B /* BigYakudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031C131F2630486C007BF92B /* BigYakudo.swift */; };
 		031C13232630486D007BF92B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031C13222630486D007BF92B /* Assets.xcassets */; };
-		031C13252630486D007BF92B /* Big_Yakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* Big_Yakudo.intentdefinition */; };
-		031C13262630486D007BF92B /* Big_Yakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* Big_Yakudo.intentdefinition */; };
-		031C13292630486D007BF92B /* Big_YakudoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 031C13192630486B007BF92B /* Big_YakudoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		031C13252630486D007BF92B /* BigYakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* BigYakudo.intentdefinition */; };
+		031C13262630486D007BF92B /* BigYakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* BigYakudo.intentdefinition */; };
+		031C13292630486D007BF92B /* BigYakudoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 031C13192630486B007BF92B /* BigYakudoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		03AD3D7B262F23ED009F108C /* OpenCVTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3D7A262F23ED009F108C /* OpenCVTest.mm */; };
 		03AD3D8F262F2A7B009F108C /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AD3D8E262F2A7B009F108C /* sample.png */; };
 		03AD3D96262F2F19009F108C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AD3D74262F2382009F108C /* opencv2.framework */; };
@@ -26,12 +26,12 @@
 		03AD3DB0262F367D009F108C /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DAE262F367D009F108C /* random.cpp */; };
 		03AD3DB8262F5432009F108C /* AVFoundationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DB7262F5432009F108C /* AVFoundationView.swift */; };
 		03AD3DBD262F54B4009F108C /* CALayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DBC262F54B4009F108C /* CALayerView.swift */; };
-		03EC0DB9262F14A400CF944D /* Yakudo_For_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DB8262F14A400CF944D /* Yakudo_For_iOSApp.swift */; };
+		03EC0DB9262F14A400CF944D /* YakudoForiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DB8262F14A400CF944D /* YakudoForiOSApp.swift */; };
 		03EC0DBB262F14A400CF944D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DBA262F14A400CF944D /* ContentView.swift */; };
 		03EC0DBD262F14A500CF944D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03EC0DBC262F14A500CF944D /* Assets.xcassets */; };
 		03EC0DC0262F14A500CF944D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03EC0DBF262F14A500CF944D /* Preview Assets.xcassets */; };
-		03EC0DCB262F14A500CF944D /* Yakudo_For_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DCA262F14A500CF944D /* Yakudo_For_iOSTests.swift */; };
-		03EC0DD6262F14A500CF944D /* Yakudo_For_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DD5262F14A500CF944D /* Yakudo_For_iOSUITests.swift */; };
+		03EC0DCB262F14A500CF944D /* YakudoForiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DCA262F14A500CF944D /* YakudoForiOSTests.swift */; };
+		03EC0DD6262F14A500CF944D /* YakudoForiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DD5262F14A500CF944D /* YakudoForiOSUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				031C13292630486D007BF92B /* Big_YakudoExtension.appex in Embed App Extensions */,
+				031C13292630486D007BF92B /* BigYakudoExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,17 +77,17 @@
 		031C130626302596007BF92B /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		031C130B26303B3B007BF92B /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		031C131026304175007BF92B /* カメラアイコン8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "カメラアイコン8.jpeg"; sourceTree = "<group>"; };
-		031C13192630486B007BF92B /* Big_YakudoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Big_YakudoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		031C13192630486B007BF92B /* BigYakudoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BigYakudoExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		031C131A2630486B007BF92B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		031C131C2630486B007BF92B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		031C131F2630486C007BF92B /* Big_Yakudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Big_Yakudo.swift; sourceTree = "<group>"; };
-		031C13212630486C007BF92B /* Big_Yakudo.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Big_Yakudo.intentdefinition; sourceTree = "<group>"; };
+		031C131F2630486C007BF92B /* BigYakudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigYakudo.swift; sourceTree = "<group>"; };
+		031C13212630486C007BF92B /* BigYakudo.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = BigYakudo.intentdefinition; sourceTree = "<group>"; };
 		031C13222630486D007BF92B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031C13242630486D007BF92B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03AD3D74262F2382009F108C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = common/opencv2.framework; sourceTree = SOURCE_ROOT; };
 		03AD3D79262F23C7009F108C /* OpenCVTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVTest.h; sourceTree = "<group>"; };
 		03AD3D7A262F23ED009F108C /* OpenCVTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVTest.mm; sourceTree = "<group>"; };
-		03AD3D80262F2429009F108C /* Yakudo_For_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yakudo_For_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		03AD3D80262F2429009F108C /* YakudoForiOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YakudoForiOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		03AD3D8E262F2A7B009F108C /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sample.png; path = ../../Downloads/sample.png; sourceTree = "<group>"; };
 		03AD3D9E262F2FA3009F108C /* image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpeg; sourceTree = "<group>"; };
 		03AD3DA3262F319B009F108C /* Yakudo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Yakudo.h; sourceTree = "<group>"; };
@@ -96,17 +96,17 @@
 		03AD3DAE262F367D009F108C /* random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
 		03AD3DB7262F5432009F108C /* AVFoundationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationView.swift; sourceTree = "<group>"; };
 		03AD3DBC262F54B4009F108C /* CALayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerView.swift; sourceTree = "<group>"; };
-		03EC0DB5262F14A400CF944D /* Yakudo_For_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yakudo_For_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		03EC0DB8262F14A400CF944D /* Yakudo_For_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yakudo_For_iOSApp.swift; sourceTree = "<group>"; };
+		03EC0DB5262F14A400CF944D /* YakudoForiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakudoForiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03EC0DB8262F14A400CF944D /* YakudoForiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakudoForiOSApp.swift; sourceTree = "<group>"; };
 		03EC0DBA262F14A400CF944D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03EC0DBC262F14A500CF944D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03EC0DBF262F14A500CF944D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03EC0DC1262F14A500CF944D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03EC0DC6262F14A500CF944D /* Yakudo_For_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Yakudo_For_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		03EC0DCA262F14A500CF944D /* Yakudo_For_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yakudo_For_iOSTests.swift; sourceTree = "<group>"; };
+		03EC0DC6262F14A500CF944D /* YakudoForiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakudoForiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03EC0DCA262F14A500CF944D /* YakudoForiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakudoForiOSTests.swift; sourceTree = "<group>"; };
 		03EC0DCC262F14A500CF944D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03EC0DD1262F14A500CF944D /* Yakudo_For_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Yakudo_For_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		03EC0DD5262F14A500CF944D /* Yakudo_For_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yakudo_For_iOSUITests.swift; sourceTree = "<group>"; };
+		03EC0DD1262F14A500CF944D /* YakudoForiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakudoForiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03EC0DD5262F14A500CF944D /* YakudoForiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakudoForiOSUITests.swift; sourceTree = "<group>"; };
 		03EC0DD7262F14A500CF944D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,15 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		031C131E2630486B007BF92B /* Big_Yakudo */ = {
+		031C131E2630486B007BF92B /* BigYakudo */ = {
 			isa = PBXGroup;
 			children = (
-				031C131F2630486C007BF92B /* Big_Yakudo.swift */,
-				031C13212630486C007BF92B /* Big_Yakudo.intentdefinition */,
+				031C131F2630486C007BF92B /* BigYakudo.swift */,
+				031C13212630486C007BF92B /* BigYakudo.intentdefinition */,
 				031C13222630486D007BF92B /* Assets.xcassets */,
 				031C13242630486D007BF92B /* Info.plist */,
 			);
-			path = Big_Yakudo;
+			path = BigYakudo;
 			sourceTree = "<group>";
 		};
 		03AD3D6E262F229E009F108C /* Frameworks */ = {
@@ -172,11 +172,11 @@
 				03AD3D9E262F2FA3009F108C /* image.jpeg */,
 				031C131026304175007BF92B /* カメラアイコン8.jpeg */,
 				03AD3D8E262F2A7B009F108C /* sample.png */,
-				031C131E2630486B007BF92B /* Big_Yakudo */,
+				031C131E2630486B007BF92B /* BigYakudo */,
 				03AD3D6E262F229E009F108C /* Frameworks */,
-				03EC0DB7262F14A400CF944D /* Yakudo_For_iOS */,
-				03EC0DC9262F14A500CF944D /* Yakudo_For_iOSTests */,
-				03EC0DD4262F14A500CF944D /* Yakudo_For_iOSUITests */,
+				03EC0DB7262F14A400CF944D /* YakudoForiOS */,
+				03EC0DC9262F14A500CF944D /* YakudoForiOSTests */,
+				03EC0DD4262F14A500CF944D /* YakudoForiOSUITests */,
 				03EC0DB6262F14A400CF944D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -184,15 +184,15 @@
 		03EC0DB6262F14A400CF944D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03EC0DB5262F14A400CF944D /* Yakudo_For_iOS.app */,
-				03EC0DC6262F14A500CF944D /* Yakudo_For_iOSTests.xctest */,
-				03EC0DD1262F14A500CF944D /* Yakudo_For_iOSUITests.xctest */,
-				031C13192630486B007BF92B /* Big_YakudoExtension.appex */,
+				03EC0DB5262F14A400CF944D /* YakudoForiOS.app */,
+				03EC0DC6262F14A500CF944D /* YakudoForiOSTests.xctest */,
+				03EC0DD1262F14A500CF944D /* YakudoForiOSUITests.xctest */,
+				031C13192630486B007BF92B /* BigYakudoExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		03EC0DB7262F14A400CF944D /* Yakudo_For_iOS */ = {
+		03EC0DB7262F14A400CF944D /* YakudoForiOS */ = {
 			isa = PBXGroup;
 			children = (
 				03AD3D7A262F23ED009F108C /* OpenCVTest.mm */,
@@ -201,19 +201,19 @@
 				03AD3DAE262F367D009F108C /* random.cpp */,
 				03AD3D79262F23C7009F108C /* OpenCVTest.h */,
 				03AD3DA3262F319B009F108C /* Yakudo.h */,
-				03AD3D80262F2429009F108C /* Yakudo_For_iOS-Bridging-Header.h */,
+				03AD3D80262F2429009F108C /* YakudoForiOS-Bridging-Header.h */,
 				031C130B26303B3B007BF92B /* ImagePicker.swift */,
 				03EC0DBA262F14A400CF944D /* ContentView.swift */,
 				031C130626302596007BF92B /* ImageSaver.swift */,
 				031C13012630039E007BF92B /* OrientationObserver.swift */,
-				03EC0DB8262F14A400CF944D /* Yakudo_For_iOSApp.swift */,
+				03EC0DB8262F14A400CF944D /* YakudoForiOSApp.swift */,
 				03EC0DBC262F14A500CF944D /* Assets.xcassets */,
 				03EC0DC1262F14A500CF944D /* Info.plist */,
 				03AD3DB7262F5432009F108C /* AVFoundationView.swift */,
 				03AD3DBC262F54B4009F108C /* CALayerView.swift */,
 				03EC0DBE262F14A500CF944D /* Preview Content */,
 			);
-			path = Yakudo_For_iOS;
+			path = YakudoForiOS;
 			sourceTree = "<group>";
 		};
 		03EC0DBE262F14A500CF944D /* Preview Content */ = {
@@ -224,30 +224,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		03EC0DC9262F14A500CF944D /* Yakudo_For_iOSTests */ = {
+		03EC0DC9262F14A500CF944D /* YakudoForiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				03EC0DCA262F14A500CF944D /* Yakudo_For_iOSTests.swift */,
+				03EC0DCA262F14A500CF944D /* YakudoForiOSTests.swift */,
 				03EC0DCC262F14A500CF944D /* Info.plist */,
 			);
-			path = Yakudo_For_iOSTests;
+			path = YakudoForiOSTests;
 			sourceTree = "<group>";
 		};
-		03EC0DD4262F14A500CF944D /* Yakudo_For_iOSUITests */ = {
+		03EC0DD4262F14A500CF944D /* YakudoForiOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				03EC0DD5262F14A500CF944D /* Yakudo_For_iOSUITests.swift */,
+				03EC0DD5262F14A500CF944D /* YakudoForiOSUITests.swift */,
 				03EC0DD7262F14A500CF944D /* Info.plist */,
 			);
-			path = Yakudo_For_iOSUITests;
+			path = YakudoForiOSUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		031C13182630486B007BF92B /* Big_YakudoExtension */ = {
+		031C13182630486B007BF92B /* BigYakudoExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 031C132A2630486D007BF92B /* Build configuration list for PBXNativeTarget "Big_YakudoExtension" */;
+			buildConfigurationList = 031C132A2630486D007BF92B /* Build configuration list for PBXNativeTarget "BigYakudoExtension" */;
 			buildPhases = (
 				031C13152630486B007BF92B /* Sources */,
 				031C13162630486B007BF92B /* Frameworks */,
@@ -257,14 +257,14 @@
 			);
 			dependencies = (
 			);
-			name = Big_YakudoExtension;
+			name = BigYakudoExtension;
 			productName = Big_YakudoExtension;
-			productReference = 031C13192630486B007BF92B /* Big_YakudoExtension.appex */;
+			productReference = 031C13192630486B007BF92B /* BigYakudoExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		03EC0DB4262F14A400CF944D /* Yakudo_For_iOS */ = {
+		03EC0DB4262F14A400CF944D /* YakudoForiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03EC0DDA262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOS" */;
+			buildConfigurationList = 03EC0DDA262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOS" */;
 			buildPhases = (
 				03EC0DB1262F14A400CF944D /* Sources */,
 				03EC0DB2262F14A400CF944D /* Frameworks */,
@@ -277,16 +277,16 @@
 			dependencies = (
 				031C13282630486D007BF92B /* PBXTargetDependency */,
 			);
-			name = Yakudo_For_iOS;
+			name = YakudoForiOS;
 			packageProductDependencies = (
 			);
 			productName = Yakudo_For_iOS;
-			productReference = 03EC0DB5262F14A400CF944D /* Yakudo_For_iOS.app */;
+			productReference = 03EC0DB5262F14A400CF944D /* YakudoForiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		03EC0DC5262F14A500CF944D /* Yakudo_For_iOSTests */ = {
+		03EC0DC5262F14A500CF944D /* YakudoForiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03EC0DDD262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOSTests" */;
+			buildConfigurationList = 03EC0DDD262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOSTests" */;
 			buildPhases = (
 				03EC0DC2262F14A500CF944D /* Sources */,
 				03EC0DC3262F14A500CF944D /* Frameworks */,
@@ -297,14 +297,14 @@
 			dependencies = (
 				03EC0DC8262F14A500CF944D /* PBXTargetDependency */,
 			);
-			name = Yakudo_For_iOSTests;
+			name = YakudoForiOSTests;
 			productName = Yakudo_For_iOSTests;
-			productReference = 03EC0DC6262F14A500CF944D /* Yakudo_For_iOSTests.xctest */;
+			productReference = 03EC0DC6262F14A500CF944D /* YakudoForiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		03EC0DD0262F14A500CF944D /* Yakudo_For_iOSUITests */ = {
+		03EC0DD0262F14A500CF944D /* YakudoForiOSUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03EC0DE0262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOSUITests" */;
+			buildConfigurationList = 03EC0DE0262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOSUITests" */;
 			buildPhases = (
 				03EC0DCD262F14A500CF944D /* Sources */,
 				03EC0DCE262F14A500CF944D /* Frameworks */,
@@ -315,9 +315,9 @@
 			dependencies = (
 				03EC0DD3262F14A500CF944D /* PBXTargetDependency */,
 			);
-			name = Yakudo_For_iOSUITests;
+			name = YakudoForiOSUITests;
 			productName = Yakudo_For_iOSUITests;
-			productReference = 03EC0DD1262F14A500CF944D /* Yakudo_For_iOSUITests.xctest */;
+			productReference = 03EC0DD1262F14A500CF944D /* YakudoForiOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 		03EC0DAD262F14A400CF944D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					031C13182630486B007BF92B = {
@@ -345,7 +345,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 03EC0DB0262F14A400CF944D /* Build configuration list for PBXProject "Yakudo_For_iOS" */;
+			buildConfigurationList = 03EC0DB0262F14A400CF944D /* Build configuration list for PBXProject "YakudoForiOS" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -360,10 +360,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				03EC0DB4262F14A400CF944D /* Yakudo_For_iOS */,
-				03EC0DC5262F14A500CF944D /* Yakudo_For_iOSTests */,
-				03EC0DD0262F14A500CF944D /* Yakudo_For_iOSUITests */,
-				031C13182630486B007BF92B /* Big_YakudoExtension */,
+				03EC0DB4262F14A400CF944D /* YakudoForiOS */,
+				03EC0DC5262F14A500CF944D /* YakudoForiOSTests */,
+				03EC0DD0262F14A500CF944D /* YakudoForiOSUITests */,
+				031C13182630486B007BF92B /* BigYakudoExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -430,8 +430,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				031C13252630486D007BF92B /* Big_Yakudo.intentdefinition in Sources */,
-				031C13202630486C007BF92B /* Big_Yakudo.swift in Sources */,
+				031C13252630486D007BF92B /* BigYakudo.intentdefinition in Sources */,
+				031C13202630486C007BF92B /* BigYakudo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,11 +441,11 @@
 			files = (
 				03AD3DA6262F31CD009F108C /* yakudo.mm in Sources */,
 				03EC0DBB262F14A400CF944D /* ContentView.swift in Sources */,
-				031C13262630486D007BF92B /* Big_Yakudo.intentdefinition in Sources */,
+				031C13262630486D007BF92B /* BigYakudo.intentdefinition in Sources */,
 				03AD3DBD262F54B4009F108C /* CALayerView.swift in Sources */,
 				031C13022630039E007BF92B /* OrientationObserver.swift in Sources */,
 				03AD3DB8262F5432009F108C /* AVFoundationView.swift in Sources */,
-				03EC0DB9262F14A400CF944D /* Yakudo_For_iOSApp.swift in Sources */,
+				03EC0DB9262F14A400CF944D /* YakudoForiOSApp.swift in Sources */,
 				031C130C26303B3B007BF92B /* ImagePicker.swift in Sources */,
 				031C130726302596007BF92B /* ImageSaver.swift in Sources */,
 				03AD3D7B262F23ED009F108C /* OpenCVTest.mm in Sources */,
@@ -457,7 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03EC0DCB262F14A500CF944D /* Yakudo_For_iOSTests.swift in Sources */,
+				03EC0DCB262F14A500CF944D /* YakudoForiOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03EC0DD6262F14A500CF944D /* Yakudo_For_iOSUITests.swift in Sources */,
+				03EC0DD6262F14A500CF944D /* YakudoForiOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,17 +474,17 @@
 /* Begin PBXTargetDependency section */
 		031C13282630486D007BF92B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 031C13182630486B007BF92B /* Big_YakudoExtension */;
+			target = 031C13182630486B007BF92B /* BigYakudoExtension */;
 			targetProxy = 031C13272630486D007BF92B /* PBXContainerItemProxy */;
 		};
 		03EC0DC8262F14A500CF944D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 03EC0DB4262F14A400CF944D /* Yakudo_For_iOS */;
+			target = 03EC0DB4262F14A400CF944D /* YakudoForiOS */;
 			targetProxy = 03EC0DC7262F14A500CF944D /* PBXContainerItemProxy */;
 		};
 		03EC0DD3262F14A500CF944D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 03EC0DB4262F14A400CF944D /* Yakudo_For_iOS */;
+			target = 03EC0DB4262F14A400CF944D /* YakudoForiOS */;
 			targetProxy = 03EC0DD2262F14A500CF944D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -497,7 +497,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPFMF73353;
-				INFOPLIST_FILE = Big_Yakudo/Info.plist;
+				INFOPLIST_FILE = BigYakudo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,7 +519,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPFMF73353;
-				INFOPLIST_FILE = Big_Yakudo/Info.plist;
+				INFOPLIST_FILE = BigYakudo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -655,7 +657,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Yakudo_For_iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"YakudoForiOS/Preview Content\"";
 				DEVELOPMENT_TEAM = DPFMF73353;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -665,15 +667,15 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/common",
 				);
-				INFOPLIST_FILE = Yakudo_For_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_FILE = YakudoForiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Yakudo_For_iOS/Yakudo_For_iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "YakudoForiOS/YakudoForiOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -688,7 +690,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Yakudo_For_iOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"YakudoForiOS/Preview Content\"";
 				DEVELOPMENT_TEAM = DPFMF73353;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
@@ -699,15 +701,15 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/common",
 				);
-				INFOPLIST_FILE = Yakudo_For_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_FILE = YakudoForiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Yakudo_For_iOS/Yakudo_For_iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "YakudoForiOS/YakudoForiOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = YES;
@@ -726,7 +728,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Yakudo_For_iOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -736,7 +738,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yakudo_For_iOS.app/Yakudo_For_iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YakudoForiOS.app/YakudoForiOS";
 			};
 			name = Debug;
 		};
@@ -752,7 +754,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Yakudo_For_iOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,7 +764,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yakudo_For_iOS.app/Yakudo_For_iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YakudoForiOS.app/YakudoForiOS";
 			};
 			name = Release;
 		};
@@ -777,6 +779,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Yakudo_For_iOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -801,6 +804,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Yakudo_For_iOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,7 +821,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		031C132A2630486D007BF92B /* Build configuration list for PBXNativeTarget "Big_YakudoExtension" */ = {
+		031C132A2630486D007BF92B /* Build configuration list for PBXNativeTarget "BigYakudoExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				031C132B2630486D007BF92B /* Debug */,
@@ -826,7 +830,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03EC0DB0262F14A400CF944D /* Build configuration list for PBXProject "Yakudo_For_iOS" */ = {
+		03EC0DB0262F14A400CF944D /* Build configuration list for PBXProject "YakudoForiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03EC0DD8262F14A500CF944D /* Debug */,
@@ -835,7 +839,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03EC0DDA262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOS" */ = {
+		03EC0DDA262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03EC0DDB262F14A500CF944D /* Debug */,
@@ -844,7 +848,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03EC0DDD262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOSTests" */ = {
+		03EC0DDD262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03EC0DDE262F14A500CF944D /* Debug */,
@@ -853,7 +857,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03EC0DE0262F14A500CF944D /* Build configuration list for PBXNativeTarget "Yakudo_For_iOSUITests" */ = {
+		03EC0DE0262F14A500CF944D /* Build configuration list for PBXNativeTarget "YakudoForiOSUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03EC0DE1262F14A500CF944D /* Debug */,
