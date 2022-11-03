@@ -13,7 +13,6 @@
 		031C131126304175007BF92B /* カメラアイコン8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 031C131026304175007BF92B /* カメラアイコン8.jpeg */; };
 		031C131B2630486B007BF92B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031C131A2630486B007BF92B /* WidgetKit.framework */; };
 		031C131D2630486B007BF92B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031C131C2630486B007BF92B /* SwiftUI.framework */; };
-		031C13202630486C007BF92B /* BigYakudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031C131F2630486C007BF92B /* BigYakudo.swift */; };
 		031C13232630486D007BF92B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031C13222630486D007BF92B /* Assets.xcassets */; };
 		031C13252630486D007BF92B /* BigYakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* BigYakudo.intentdefinition */; };
 		031C13262630486D007BF92B /* BigYakudo.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 031C13212630486C007BF92B /* BigYakudo.intentdefinition */; };
@@ -26,6 +25,9 @@
 		03AD3DB0262F367D009F108C /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DAE262F367D009F108C /* random.cpp */; };
 		03AD3DB8262F5432009F108C /* AVFoundationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DB7262F5432009F108C /* AVFoundationView.swift */; };
 		03AD3DBD262F54B4009F108C /* CALayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD3DBC262F54B4009F108C /* CALayerView.swift */; };
+		03AE3F6329137BE500F34524 /* BigYakudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031C131F2630486C007BF92B /* BigYakudo.swift */; };
+		03AE3F6429137BEA00F34524 /* BigYakudoBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380E219291268F2006F14A0 /* BigYakudoBundle.swift */; };
+		03AE3F6729137D9800F34524 /* LockYakudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE3F6529137C8E00F34524 /* LockYakudo.swift */; };
 		03EC0DB9262F14A400CF944D /* YakudoForiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DB8262F14A400CF944D /* YakudoForiOSApp.swift */; };
 		03EC0DBB262F14A400CF944D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC0DBA262F14A400CF944D /* ContentView.swift */; };
 		03EC0DBD262F14A500CF944D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03EC0DBC262F14A500CF944D /* Assets.xcassets */; };
@@ -84,6 +86,7 @@
 		031C13212630486C007BF92B /* BigYakudo.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = BigYakudo.intentdefinition; sourceTree = "<group>"; };
 		031C13222630486D007BF92B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031C13242630486D007BF92B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0380E219291268F2006F14A0 /* BigYakudoBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigYakudoBundle.swift; sourceTree = "<group>"; };
 		03AD3D74262F2382009F108C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = common/opencv2.framework; sourceTree = SOURCE_ROOT; };
 		03AD3D79262F23C7009F108C /* OpenCVTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVTest.h; sourceTree = "<group>"; };
 		03AD3D7A262F23ED009F108C /* OpenCVTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVTest.mm; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		03AD3DAE262F367D009F108C /* random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
 		03AD3DB7262F5432009F108C /* AVFoundationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationView.swift; sourceTree = "<group>"; };
 		03AD3DBC262F54B4009F108C /* CALayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerView.swift; sourceTree = "<group>"; };
+		03AE3F6529137C8E00F34524 /* LockYakudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockYakudo.swift; sourceTree = "<group>"; };
 		03EC0DB5262F14A400CF944D /* YakudoForiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakudoForiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EC0DB8262F14A400CF944D /* YakudoForiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakudoForiOSApp.swift; sourceTree = "<group>"; };
 		03EC0DBA262F14A400CF944D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 		031C131E2630486B007BF92B /* BigYakudo */ = {
 			isa = PBXGroup;
 			children = (
+				0380E219291268F2006F14A0 /* BigYakudoBundle.swift */,
+				03AE3F6529137C8E00F34524 /* LockYakudo.swift */,
 				031C131F2630486C007BF92B /* BigYakudo.swift */,
 				031C13212630486C007BF92B /* BigYakudo.intentdefinition */,
 				031C13222630486D007BF92B /* Assets.xcassets */,
@@ -431,7 +437,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				031C13252630486D007BF92B /* BigYakudo.intentdefinition in Sources */,
-				031C13202630486C007BF92B /* BigYakudo.swift in Sources */,
+				03AE3F6729137D9800F34524 /* LockYakudo.swift in Sources */,
+				03AE3F6429137BEA00F34524 /* BigYakudoBundle.swift in Sources */,
+				03AE3F6329137BE500F34524 /* BigYakudo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,13 +506,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPFMF73353;
 				INFOPLIST_FILE = BigYakudo/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Swift;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS.Big-Yakudo";
+				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS.BigYakudo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -520,13 +529,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DPFMF73353;
 				INFOPLIST_FILE = BigYakudo/Info.plist;
+				INTENTS_CODEGEN_LANGUAGE = Swift;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS.Big-Yakudo";
+				PRODUCT_BUNDLE_IDENTIFIER = "n-tane.Yakudo-For-iOS.BigYakudo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
