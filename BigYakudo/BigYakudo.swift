@@ -1,6 +1,6 @@
 //
-//  Big_Yakudo.swift
-//  Big_Yakudo
+//  BigYakudo.swift
+//  BigYakudo
 //
 //  Created by SEED on 2021/04/21.
 //
@@ -19,7 +19,7 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -40,7 +40,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
 }
 
-struct Big_YakudoEntryView : View {
+struct BigYakudoEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -55,22 +55,21 @@ struct Big_YakudoEntryView : View {
     }
 }
 
-@main
-struct Big_Yakudo: Widget {
-    let kind: String = "Big_Yakudo"
+struct BigYakudo: Widget {
+    let kind: String = "BigYakudo"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            Big_YakudoEntryView(entry: entry)
+            BigYakudoEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Yakudo ショートカット")
+        .description("Yakudoを起動することができます")
     }
 }
 
-struct Big_Yakudo_Previews: PreviewProvider {
+struct BigYakudo_Previews: PreviewProvider {
     static var previews: some View {
-        Big_YakudoEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        BigYakudoEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

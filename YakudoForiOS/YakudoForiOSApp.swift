@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Yakudo_For_iOSApp: App {
+struct YakudoForiOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
